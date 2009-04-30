@@ -1,0 +1,48 @@
+<%include file="${cfg.TMPL_HEADER}" />
+    <h1>jacla Web管理者ツール / Web管理者引継ぎ</h1>
+    <p class="dil_9">
+        新任のWeb管理者の情報を登録します。<br />
+        入力した情報は、歴代のWeb管理者の情報と共に保存されます。
+    </p>
+
+    <form id="newAdminInfo" name="newAdminInfo" action="" method="post">
+    <input type="hidden" name="ps" value="${int(ps)+1}" />
+    <table>
+        <tr>
+            <td>
+            <dl>
+            <dt>入学年度</dt>
+            <dd>
+            <select name="generation">
+            % for y in range(2003, (dt.year+1)):
+                % if str(y) == params.get('generation', ''):
+                <option name="${y}" selected>${y}</option>
+                % else:
+                <option name="${y}">${y}</option>
+                % endif
+            % endfor
+            </select>
+            </dd>
+            <dt>学部</dt>
+            <dd><input type="text" name="dept" size="30" value="${params.get('dept', '')}"/></dd>
+            <dt>名前</dt>
+            <dd>姓 <input type="text" name="name_sei" size="10" value="${params.get('name_sei', '')}" />　名 <input type="text" name="name_mei" size="10" value="${params.get('name_mei', '')}"/></dd>
+            <dt>メールアドレス</dt>
+            <dd><input type="text" name="mail" size="30" value="${params.get('mail', '')}" /></dd>
+            <dt>アカウント</dt>
+            <dd><input type="text" name="account" size="13" value="${params.get('account', '')}" /> <!--<input type="button" value="利用可能チェック" />--></dd>
+            <dt>パスワード</dt>
+            <dd><input type="password" name="passwd" size="13" /></dd>
+            </dl>
+            </td>
+        </tr>
+        <tr>
+            <td class=""><input type="submit" value="確認" /></td>
+        </tr>
+    </table>
+    </form>
+
+    <p>
+        <a href="${cfg.URL_TOP}">Web管理者ツールトップ</a>
+    </p>
+<%include file="${cfg.TMPL_FOOTER}" />

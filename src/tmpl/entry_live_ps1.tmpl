@@ -1,0 +1,74 @@
+<%include file="${cfg.TMPL_HEADER}" />
+        <p class="info">
+            Welcome to JBIMS ver.2 / ライブエントリー
+        </p>
+        <p>
+        バンド情報を入力して下さい。<br />
+        入力した情報は最新のバンド情報として登録されます。<br />
+        <span class="warn_b">全て必須項目です</span>
+        </p>
+            
+        <form id="band_info" name="band_info" action="" method="post">
+        <input type="hidden" name="ps" value="2" />
+        <input type="hidden" name="id" value="${id}" />
+        <input type="hidden" name="ver" value="${ver}" />
+
+        <table>
+            <tr>
+                <td class="label r"><label for="band_name">バンド名: </label></td>
+                <td>
+                % if errors.has_key('band_name'):
+                    <input type="text" id="band_name" name="band_name" size="30" value="${params.get('band_name', band.band_name)}" class="err_b" />
+                    <span class="err">${errors.get('band_name')}</span>
+                % else:
+                    <input type="text" id="band_name" name="band_name" size="30" value="${params.get('band_name', band.band_name)}" />
+                % endif
+                </td>
+            </tr>
+            <tr>
+                <td class="label r"><label for="genre">ジャンル: </label></td>
+                <td>
+                % if errors.has_key('genre'):
+                    <input type="text" id="genre" name="genre" size="30" value="${params.get('genre', band.genre)}" class="err_b" />
+                    <span class="err">${errors.get('genre')}</span>
+                % else:
+                    <input type="text" id="genre" name="genre" size="30" value="${params.get('genre', band.genre)}" />
+                % endif
+                </td>
+            </tr>
+            <tr>
+                <td class="label r">メンバー: </td>
+                <td>
+                    <ol>
+                    % for part, member, i in zip(params.get('part', band.part).split(cfg.DATA_DELIMITER), params.get('member', band.member).split(cfg.DATA_DELIMITER), range(band.member_num)):
+                    <li>
+                        <select name="part${i}">
+                        % for p in cfg.LST_BAND_PART:
+                            % if p == part:
+                            <option value="${p}" selected="selected">${p}</option>
+                            % else:
+                            <option value="${p}">${p}</option>
+                            % endif
+                        % endfor
+                        </select>
+                        % if errors.has_key('member' + str(i)):
+                        <input type="text" name="member${i}" size="30" value="${member}" class="err_b" />
+                        % else:
+                        <input type="text" name="member${i}" size="30" value="${member}" />
+                        % endif
+                    </li>
+                    % endfor
+                    </ol>
+                    <span class="warn">※ライブに出演しないメンバーは、パートを[--]に設定して下さい</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="label r"><label for="comment">コメント: </label></td>
+                <td><textarea id="comment" name="comment" cols="50" rows="5">${params.get('comment', band.comment.replace(cfg.DATA_DELIMITER, '\n'))}</textarea></td>
+            </tr>
+            <tr>
+                <td class="r" colspan="2"><input type="submit" value="次へ" /></td>
+            </tr>
+        </table>
+        </form>
+<%include file="${cfg.TMPL_FOOTER}" />

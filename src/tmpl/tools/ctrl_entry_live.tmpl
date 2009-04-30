@@ -1,0 +1,21 @@
+<%include file="${cfg.TMPL_HEADER}" />
+    <h1>jacla Web管理者ツール / ライブエントリー管理</h1>
+    <p class="dil_9">
+        % if ctrller.is_start() == True:
+        現在、ライブエントリー 受付中です。<br />
+        % else:
+        現在、ライブエントリー 受付停止中です。<br />
+        % endif
+    </p>
+    <p>
+        % if ctrller.is_start() == True:
+        <a href="?func=off">ライブエントリー 受付停止</a>
+        % else:
+        <a href="?func=on">ライブエントリー 受付開始</a>
+        % endif
+    </p>
+
+    <p>
+        <a href="${cfg.URL_TOP}">Web管理者ツールトップ</a>
+    </p>
+<%include file="${cfg.TMPL_FOOTER}" />

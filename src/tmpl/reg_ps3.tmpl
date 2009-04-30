@@ -1,0 +1,48 @@
+<%include file="${cfg.TMPL_HEADER}" />
+        <h1>JBIMS ver.2 / バンド登録</h1>
+        <p class="dil_9">
+        新規バンド登録を行いました。<br />
+        登録した内容は、以下の通りです。
+        </p>
+            
+        <form id="band_info" name="band_info" action="" method="post">
+        <dl>
+            <dt>バンド名</dt>
+            <dd>${b_data['band_name']}</dd>
+            <dt>ジャンル</dt>
+            <dd>${b_data['genre']}</dd>
+            <dt>代表者</dt>
+            <dd>${b_data['leader_name']}</dd>
+            <dt>代表者メールアドレス</dt>
+            <dd>${b_data['leader_mail']}</dd>
+            <dt>パスワード</dt>
+            <dd>(この画面では表示されません)</dd>
+            <dt>メンバー数</dt>
+            <dd>${b_data['member_num']}</dd>
+            <dt>メンバー</dt>
+            <dd>
+                <ol>
+                    % for i in range(int(b_data['member_num'])):
+                    <li>${b_data['part'][i]} / ${b_data['member'][i]}</li>
+                    % endfor
+                </ol>
+            </dd>
+            <dt>演奏曲</dt>
+            <dd>
+                <ol>
+                % for music in b_data['music_name'].split('\n'):
+                    % if music != '':
+                    <li>${music}</li>
+                    % endif
+                % endfor
+                </ol>
+            </dd>
+            <dt>コメント</dt>
+            <dd>${b_data['comment'].replace('\n', '<br />')}</dd>
+        </dl>
+        </form>
+        
+        <p>
+        <a href="${cfg.URL_TOP}">一覧へ戻る</a>
+        </p>
+<%include file="${cfg.TMPL_FOOTER}" />

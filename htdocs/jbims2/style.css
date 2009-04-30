@@ -1,0 +1,187 @@
+@charset "utf-8";
+/* Color style: http://www.colordic.org/w/ */
+/* all defined style clear */
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 10pt;
+    font-family: 'メイリオ' sans-serif;
+}
+
+/* css hacks */
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+.clearfix {
+    display: inline-block;
+}
+
+/* jacla style */
+body {
+    text-align: center;
+    font-size: 10pt;
+}
+div#wrapper{
+    margin: 0 auto;
+    width: 960px;
+    text-align: left;
+}
+div#header {
+    padding: 5px 10px;
+    color: #ffffff;
+    background: #0d0015;
+}
+div#header .jtitle {
+    float: left;
+    font-weight: bold;
+}
+div#header .jadmin {
+    margin: 0 15px;
+    float: right;
+}
+div#footer {
+    padding: 0 10px;
+    font-size: 9pt;
+    text-align: right;
+    border-top: 1px solid #d6c6af;
+}
+div#contents {
+    padding: 10px;
+    line-height: 1.6;
+    text-align: left;
+    min-height: 480px;
+    height: auto; !important
+    height: 480px;
+}
+a {
+    color: #0068b7;
+}
+a:hover {
+    color: #ffffff;
+    background-color: #0068b7;
+}
+a:active {
+    color: #ffffff;
+    background-color: #0068b7;
+}
+h1 {
+    margin: 3px 0;
+    font-size: 13pt;
+}
+h2 {
+    margin: 3px 0;
+    font-size: 12pt;
+    border-bottom: 2px dotted #0068b7;
+}
+h3 {
+    margin: 3px 0;
+    font-size: 11pt;
+}
+p {
+    margin: 5px 0;
+}
+li {
+    vertical-align: middle;
+}
+textarea {
+    font-size: 10pt;
+}
+
+form#band_info {
+    width: 650px;
+}
+form#band_info dt {
+    border-bottom: 1px dotted #ff0084;
+}
+form#band_info dd {
+    padding: 0.5em 2em;
+}
+form#band_info table {
+    margin: 10px;
+    border-spacing: 5px;
+    table-layout: fixed;
+    text-align: left;
+    width: 100%;
+}
+
+div#contents ul {
+    margin: 0 20px;
+}
+div#contents ol {
+    margin: 0 30px;
+}
+
+div#jbims_band_list {
+    margin: 5px 0;
+    width: 650px;
+}
+table.jbims_band {
+    margin: 10px;
+    width: 95%;
+    border-collapse: collapse; 
+    text-align: left;
+}
+table.jbims_band th {
+    padding: 5px;
+    font-size: 11pt;
+    border-bottom: 2px solid #FF0084;
+}
+table.jbims_band td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #b3ada0;
+    vertical-align: top;
+}
+table.jbims_band td.jbims_band_ctrl {
+    text-align: right;
+    border-bottom: 1px solid #ff0084;
+}
+table.jbims_band dt {
+    border-bottom: 1px dotted #b3ada0;
+}
+table.jbims_band dd {
+    padding: 0.5em 2em;
+}
+
+.c {
+    text-align: center;
+}
+.r {
+    text-align: right;
+}
+.info {
+    color: #006e54;
+}
+.info_b {
+    color: #ffffff;
+    background-color: #006e54;
+}
+.warn {
+    color: #f8b500;
+}
+.warn_b {
+    background-color: #f8b500;
+}
+.err {
+    color: #c9171e;
+}
+.err_b {
+    color: #ffffff;
+    background-color: #c9171e;
+}
+.mar_10 {
+    margin: 10px;
+}
+.dil_9 {
+    color: #999999;
+}
+.dil_c {
+    color: #cccccc;
+}
+
+.mark {
+    color: #FF0084;
+}

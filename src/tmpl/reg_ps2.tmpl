@@ -1,0 +1,75 @@
+<%include file="${cfg.TMPL_HEADER}" />
+        <h1>JBIMS ver.2 / バンド登録</h1>
+        <p class="dil_9">
+        新規バンド登録を行います。<br />
+        あなたのバンド情報を入力して下さい。<br />
+        <span class="warn">メンバーは必須項目です</span>
+        </p>
+            
+        <form id="band_info" name="band_info" action="" method="post">
+        <input type="hidden" name="ps" value="3" />
+
+        % for key in cfg.REQ_GET_KEY_PS2:
+        <input type="hidden" name="${key}" value="${b_data.get(key)}" />
+        % endfor
+
+        <table>
+        <tr>
+        <td>
+        <dl>
+            <dt>メンバー</dt>
+            <dd>
+                <ol>
+                <%
+                parts   = b_data.get('part', [])
+                members = b_data.get('member', [])
+                miss_num = int(b_data.get('member_num')) - len(parts)
+                if miss_num > 0 :
+                    parts   += [''] * miss_num
+                    members += [''] * miss_num
+                %>
+                % for i in range(int(b_data['member_num'])):
+                <li>
+                    <select name="part${i}">
+                    % for part in cfg.LST_BAND_PART:
+                        % if part == parts[i]:
+                        <option value="${part}" selected="selected">${part}</option>
+                        % else:
+                        <option value="${part}">${part}</option>
+                        % endif
+                    % endfor
+                    </select>
+                    % if errors.has_key('member' + str(i)):
+                    <input type="text" name="member${i}" size="30" value="${members[i]}" class="err_b" />
+                    % else:
+                    <input type="text" name="member${i}" size="30" value="${members[i]}" />
+                    % endif
+                </li>
+                % endfor
+                </ol>
+            </dd>
+            <dt><label for="music_name">演奏曲</label></dt>
+            <dd>
+                <textarea id="music_name" name="music_name" cols="50" rows="5">${b_data.get('music_name', '')}</textarea>
+                <div class="warn">演奏する曲を1曲ずつ改行して入力して下さい</div>
+            </dd>
+            <dt><label for="comment">コメント</label></dt>
+            <dd>
+                <textarea id="comment" name="comment" cols="50" rows="5">${b_data.get('comment', '')}</textarea>
+            </dd>
+        </dl>
+        </td>
+        </tr>
+        <tr>
+        <td class="">
+            <input type="submit" name="goback" value="戻る" />
+            <input type="submit" name="regist" value="登録" />
+        </td>
+        </tr>
+        </table>
+        </form>
+
+        <p>
+        <a href="${cfg.URL_TOP}">一覧へ戻る</a>
+        </p>
+<%include file="${cfg.TMPL_FOOTER}" />

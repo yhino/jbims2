@@ -1,0 +1,37 @@
+<%include file="${cfg.TMPL_HEADER}" />
+    <h1>jacla Web管理者ツール / Web管理者引継ぎ</h1>
+    <p class="dil_9">
+        新任のWeb管理者の情報は、以下で間違いありませんか？
+    </p>
+
+    <form id="newAdminInfo" name="newAdminInfo" action="" method="post">
+    <input type="hidden" name="ps" value="${int(ps)+1}" />
+    <table>
+        <tr>
+        <td>
+            <dl>
+                <dt>入学年度</dt>
+                <dd><input type="hidden" name="generation" value="${params.get('generation')}" />${params.get('generation')}</dd>
+                <dt>学部</dt>
+                <dd><input type="hidden" name="dept" value="${params.get('dept')}" />${params.get('dept')}</dd>
+                <dt>名前</dt>
+                <dd><input type="hidden" name="name_sei" value="${params.get('name_sei')}" />${params.get('name_sei')}　<input type="hidden" name="name_mei" value="${params.get('name_mei')}" />${params.get('name_mei')}</dd>
+                <dt>メールアドレス</dt>
+                <dd><input type="hidden" name="mail" value="${params.get('mail')}" />${params.get('mail')}</dd>
+                <dt>アカウント</dt>
+                <dd><input type="hidden" name="account" value="${params.get('account')}" />${params.get('account')}</dd>
+                <dt>パスワード</dt>
+                <dd><input type="hidden" name="passwd" value="${params.get('passwd')}" />（確認画面では表示されません）</dd>
+            </dl>
+        </td>
+        </tr>
+        <tr>
+            <td class=""><input type="button" value="戻る" /> <input type="submit" value="引継ぎ" /></td>
+        </tr>
+    </table>
+    </form>
+
+    <p>
+        <a href="${cfg.URL_TOP}">Web管理者ツールトップ</a>
+    </p>
+<%include file="${cfg.TMPL_FOOTER}" />

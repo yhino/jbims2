@@ -1,0 +1,14 @@
+<%include file="${cfg.TMPL_HEADER}" />
+    <h1>jacla Web管理者ツール</h1>
+    <p class="dil_9">
+    JBIMS2の管理ツールや、管理者権限の引継ぎなど行えるツールを用意しています。<br />
+    操作したものは取り消せませんので、注意して操作をして下さい。
+    </p>
+
+    <dl id="tool_list">
+    % for tool in cfg.TOOL_LISTS:
+        <dt><a href="${tool.get('url')}">${tool.get('name')}</a></dt>
+        <dd>${tool.get('desc')}</dd>
+    % endfor
+    </dl>
+<%include file="${cfg.TMPL_FOOTER}" />

@@ -1,0 +1,75 @@
+<%include file="${cfg.TMPL_HEADER}" />
+        <h1>JBIMS ver.2 / バンド情報修正</h1>
+        <p class="dil_9">
+        バンド情報の修正を行います。<br />
+        あなたのバンド情報を入力して下さい。<br />
+        <span class="warn">メンバーは必須項目です</span>
+        </p>
+            
+        <form id="band_info" name="band_info" action="" method="post">
+        <input type="hidden" name="ps" value="3" />
+        <input type="hidden" name="id" value="${id}" />
+        <input type="hidden" name="ver" value="${ver}" />
+
+        % for key in cfg.REQ_GET_KEY_EDIT_BAND_PS2:
+        <input type="hidden" name="${key}" value="${params.get(key)}" />
+        % endfor
+
+        <table>
+            <tr>
+                <td>
+                <dl>
+                <dt>メンバー: </dt>
+                <dd>
+                    <ol>
+                    <%
+                    part        = params.get('part', band.part).split(cfg.DATA_DELIMITER)
+                    member      = params.get('member', band.member).split(cfg.DATA_DELIMITER)
+                    miss_num    = int(params.get('member_num')) - len(part)
+                    if miss_num > 0 :
+                        part    += [''] * miss_num
+                        member  += [''] * miss_num
+                    %>
+                    % for i in range(int(params.get('member_num'))):
+                    <li>
+                        <select name="part${i}">
+                        % for p in cfg.LST_BAND_PART:
+                            % if p == part[i]:
+                            <option value="${p}" selected="selected">${p}</option>
+                            % else:
+                            <option value="${p}">${p}</option>
+                            % endif
+                        % endfor
+                        </select>
+                        % if errors.has_key('member' + str(i)):
+                        <input type="text" name="member${i}" size="30" value="${member[i]}" class="err_b" />
+                        % else:
+                        <input type="text" name="member${i}" size="30" value="${member[i]}" />
+                        % endif
+                    </li>
+                    % endfor
+                    </ol>
+                </dd>
+                <dt><label for="music_name">演奏曲: </label></dt>
+                <dd>
+                <textarea id="music_name" name="music_name" cols="50" rows="5">${params.get('music_name', band.music_name).replace(cfg.DATA_DELIMITER, '\n')}</textarea>
+                </dd>
+                <dt><label for="comment">コメント: </label></dt>
+                <dd>
+                <textarea id="comment" name="comment" cols="50" rows="5">${params.get('comment', band.comment).replace(cfg.DATA_DELIMITER, '\n')}</textarea>
+                </dd>
+                </td>
+            </tr>
+            <tr>
+                <td class="">
+                    <input type="submit" name="goback" value="戻る" />
+                    <input type="submit" name="edit" value="修正" />
+                </td>
+            </tr>
+        </table>
+        </form>
+        
+        <p>
+        <a href="${cfg.URL_TOP}">一覧へ戻る</a>
+        </p>
+<%include file="${cfg.TMPL_FOOTER}" />

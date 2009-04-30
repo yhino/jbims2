@@ -1,0 +1,71 @@
+<%include file="${cfg.TMPL_HEADER}" />
+        <h1>Welcome to JBIMS ver.2</h1>
+        <p class="dil_9">
+        このシステム(JBIMS)はジャクラ内で活動するバンドの情報を総合的に管理することで、<br />
+        部の運営支援とバンド間の情報交換を目的としてつくられています。
+        </p>
+
+        <h2>バンド登録</h2>
+        <div class="mar_10">
+            <form action="reg_band.cgi" method="post">
+            <input type="hidden" name="ps" value="1" />
+            <input type="submit" value="新規登録" />
+            </form>
+        </div>
+
+        <div id="jbims_band_list">
+        <h2>登録バンド一覧</h2>
+        % if cnt_band < 1:
+        現在登録されているバンドはありません。
+        % else:
+        % for b_data in bands:
+        <table class="jbims_band">
+            <tr><th><span class="mark">» </span>${b_data.band_name}</th></tr>
+            <tr><td>
+            <dl>
+                <dt>代表者</dt>
+                <dd><a href="mailto:${b_data.leader_mail}">${b_data.leader_name}</a></dd>
+                <dt>ジャンル</dt>
+                <dd>${b_data.genre}</dd>
+                <dt>メンバー</dt>
+                <dd>
+                <ul>
+                    % for part, member in zip(b_data.part.split(''), b_data.member.split('')):
+                    <li>${part}&nbsp;/&nbsp;${member}</li>
+                    % endfor
+                </ul>
+                </dd>
+                <dt>演奏曲</dt>
+                <dd>
+                <ul>
+                % for music in b_data.music_name.split(''):
+                % if music != '':
+                <li>${music}</li>
+                % endif
+                % endfor
+                </ul>
+                </dd>
+                <dt>コメント</dt>
+                <dd>${b_data.comment.replace('', '<br />')}</dd>
+            </dl>
+            </td></tr>
+            <tr>
+            <td class="jbims_band_ctrl">
+                % if ctrller.is_start() == True:
+                    % if b_data.live_entry == True:
+                    <a href="login.cgi?id=${b_data.__id__}&_done=${urllib.quote('entry_live.cgi?id='+ str(b_data.__id__) +'&ver='+ str(b_data.__version__) +'&ps=1')}">ライブエントリー [出演する]</a>
+                    % else:
+                    <a href="login.cgi?id=${b_data.__id__}&_done=${urllib.quote('entry_live.cgi?id='+ str(b_data.__id__) +'&ver='+ str(b_data.__version__) +'&ps=1')}">ライブエントリー [出演しない]</a>
+                    % endif
+                    &nbsp;/&nbsp;
+                % endif
+                <a href="login.cgi?id=${b_data.__id__}&_done=${urllib.quote('edit_band.cgi?id='+ str(b_data.__id__) +'&ver='+ str(b_data.__version__) +'&ps=1')}">変更</a>
+                &nbsp;/&nbsp;
+                <a href="login.cgi?id=${b_data.__id__}&_done=${urllib.quote('del_band.cgi?id='+ str(b_data.__id__) +'&ver='+ str(b_data.__version__) +'&ps=1')}">削除</a>
+            </td>
+            </tr>
+        </table>
+        % endfor
+        % endif
+        </div>
+<%include file="${cfg.TMPL_FOOTER}" />

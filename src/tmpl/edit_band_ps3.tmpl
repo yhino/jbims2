@@ -1,0 +1,48 @@
+<%include file="${cfg.TMPL_HEADER}" />
+        <h1>JBIMS ver.2 / バンド情報修正</h1>
+        <p class="dil_9">
+        バンド情報の修正を行いました。<br />
+        修正した内容は、以下の通りです。
+        </p>
+            
+        <form id="band_info" name="band_info" action="" method="post">
+        <dl>
+            <dt>バンド名</dt>
+            <dd>${band.band_name}</dd>
+            <dt>ジャンル</dt>
+            <dd>${band.genre}</dd>
+            <dt>代表者</dt>
+            <dd>${band.leader_name}</dd>
+            <dt>代表者メールアドレス</dt>
+            <dd>${band.leader_mail}</dd>
+            <dt>パスワード</dt>
+            <dd>(この画面では表示されません)</dd>
+            <dt>メンバー数</dt>
+            <dd>${band.member_num}</dd>
+            <dt>メンバー</dt>
+            <dd>
+                <ol>
+                % for part, member in zip(band.part.split(cfg.DATA_DELIMITER), band.member.split(cfg.DATA_DELIMITER)):
+                    <li>${part} / ${member}</li>
+                % endfor
+                </ol>
+            </dd>
+            <dt>演奏曲</dt>
+            <dd>
+                <ol>
+                % for music in band.music_name.split(cfg.DATA_DELIMITER):
+                    % if music != '':
+                    <li>${music}</li>
+                    % endif
+                % endfor
+                </ol>
+            </dd>
+            <dt>コメント</dt>
+            <dd>${band.comment.replace(cfg.DATA_DELIMITER, '<br />')}</dd>
+        </dl>
+        </form>
+        
+        <p>
+        <a href="${cfg.URL_TOP}">一覧へ戻る</a>
+        </p>
+<%include file="${cfg.TMPL_FOOTER}" />

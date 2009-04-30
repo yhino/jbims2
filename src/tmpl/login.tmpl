@@ -1,0 +1,31 @@
+<%include file="${cfg.TMPL_HEADER}" />
+        <h1>JBIMS ver.2 / バンドログイン</h1>
+        <p class="dil_9">
+        バンド情報にアクセスする為にログインをして下さい。<br />
+        パスワードは登録時に入力したパスワードです。<br />
+        </p>
+
+        % if len(errors) != 0:
+        <p>
+        <div class="err">${errors.get('passwd')}</div>
+        </p>
+        % endif
+
+        <form id="band_info" name="band_info" action="" method="post">
+        <input type="hidden" name="crumb" value="" />
+        % for key in cfg.REQ_GET_KEY_LOGIN:
+        <input type="hidden" name="${key}" value="${params.get(key)}" />
+        % endfor
+        <table>
+            <tr>
+                <dl>
+                <dt><label for="passwd">パスワード</label></dt>
+                <dd><input type="password" id="passwd" name="passwd" size="20" value="" /></dd>
+                </dl>
+            </tr>
+            <tr>
+                <td><input type="submit" value="ログイン" /></td>
+            </tr>
+        </table>
+        </form>
+<%include file="${cfg.TMPL_FOOTER}" />

@@ -1,0 +1,54 @@
+<%include file="${cfg.TMPL_HEADER}" />
+        <h1>JBIMS ver.2 / バンド情報削除</h1>
+        <p class="dil_9">
+        バンド情報を削除してもよろしいですか？<br />
+        </p>
+        
+        <form id="band_info" name="band_info" action="" method="post">
+        <input type="hidden" name="ps" value="2" />
+        <input type="hidden" name="id" value="${id}" />
+        <input type="hidden" name="ver" value="${ver}" />
+        <table>
+            <tr>
+            <td>
+            <dl>
+                <dt><label for="band_name">バンド名</label></dt>
+                <dd>${band.band_name}</dd>
+                <dt><label for="genre">ジャンル</label></dt>
+                <dd>${band.genre}</dd>
+                <dt>メンバー</dt>
+                <dd>
+                    <ol>
+                    % for part, member in zip(band.part.split(''), band.member.split('')):
+                        <li>[${part}] ${member}</li>
+                    % endfor
+                    </ol>
+                </dd>
+                <dt><label for="comment">コメント</label></dt>
+                <dd>${band.comment.replace('', '<br />')}</dd>
+                <dt>演奏曲: </dt>
+                <dd>
+                    <ol>
+                    % for m_name in band.music_name.split(cfg.DATA_DELIMITER):
+                        % if m_name != '':
+                        <li>${m_name}</li>
+                        % endif
+                    % endfor
+                    </ol>
+                </dd>
+            </dl>
+            </td>
+            </tr>
+            <tr>
+                <td class="">
+                    <input type="submit" name="cancel" value="キャンセル" />
+                    <input type="submit" name="delete" value="削除" />
+                </td>
+            </tr>
+        </table>
+        </form>
+        
+        <p>
+        <a href="${cfg.URL_TOP}">一覧へ戻る</a>
+        </p>
+<%include file="${cfg.TMPL_FOOTER}" />

@@ -1,0 +1,48 @@
+<%include file="${cfg.TMPL_HEADER}" />
+        <p class="info">
+            Welcome to JBIMS ver.2
+        </p>
+        <p>
+        ライブ情報を入力して下さい。<br />
+        入力した情報はPA, ライティングに使用されます。<br />
+        出来るだけ正確に入力して下さい。<br />
+        <span class="warn_b">全て必須項目です</span>
+        </p>
+            
+        <form id="band_info" name="band_info" action="" method="post">
+        <input type="hidden" name="ps" value="3" />
+        <input type="hidden" name="id" value="${id}" />
+        <input type="hidden" name="ver" value="${ver}" />
+        % for key in cfg.REQ_GET_KEY_ENTRY_LIVE_PS2:
+        <input type="hidden" name="${key}" value="${params.get(key)}" />
+        % endfor
+        % for music, i in zip(band.music_name.split(cfg.DATA_DELIMITER), range(len(band.music_name.split(cfg.DATA_DELIMITER)))):
+        <table>
+            <tr>
+                <th>演奏曲</th>
+                <th>ジャンル / 雰囲気</th>
+                <th>構成</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="music_name${i}" size="25" value="${music}" /></td>
+                <td rowspan="3"><textarea name="music_genre${i}" cols="30" rows="4"></textarea></td>
+                <td rowspan="3"><textarea name="music_comp${i}" cols="40" rows="4"></textarea></td>
+            </tr>
+            <tr>
+                <th>演奏時間</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="music_time${i}" size="25" value="" /></td>
+            </tr>
+        </table>
+        % endfor
+        <table>
+            <tr>
+                <td class="r" colspan="4">
+                <input type="submit" name="goback" value="戻る" />
+                <input type="submit" name="gonext" value="次へ" />
+                </td>
+            </tr>
+        </table>
+        </form>
+<%include file="${cfg.TMPL_FOOTER}" />

@@ -1,0 +1,87 @@
+<%include file="${cfg.TMPL_HEADER}" />
+        <h1>JBIMS ver.2 / バンド登録</h1>
+        <p class="dil_9">
+        新規バンド登録を行います。<br />
+        あなたのバンド情報を入力して下さい。<br />
+        <span class="warn">全て必須項目です</span>
+        </p>
+            
+        <form id="band_info" name="band_info" action="" method="post">
+        <input type="hidden" name="ps" value="2" />
+        <table>
+        <tr>
+        <td>
+        <dl>
+            <dt><label for="band_name">バンド名</label></dt>
+            <dd>
+                % if errors.has_key('band_name'):
+                    <input type="text" id="band_name" name="band_name" size="30" value="${b_data.get('band_name', '')}" class="err_b" />
+                    <span class="err">${errors.get('band_name')}</span>
+                % else:
+                    <input type="text" id="band_name" name="band_name" size="30" value="${b_data.get('band_name', '')}" />
+                % endif
+            </dd>
+            <dt><label for="genre">ジャンル</label></dt>
+            <dd>
+                % if errors.has_key('genre'):
+                    <input type="text" id="genre" name="genre" size="30" value="${b_data.get('genre', '')}" class="err_b" />
+                    <span class="err">${errors.get('genre')}</span>
+                % else:
+                    <input type="text" id="genre" name="genre" size="30" value="${b_data.get('genre', '')}" />
+                % endif
+            </dd>
+            <dt><label for="leader_name">代表者: </label></dt>
+            <dd>
+                % if errors.has_key('leader_name'):
+                    <input type="text" id="leader_name" name="leader_name" size="30" value="${b_data.get('leader_name', '')}" class="err_b" />
+                    <span class="err">${errors.get('leader_name')}</span>
+                % else:
+                    <input type="text" id="leader_name" name="leader_name" size="30" value="${b_data.get('leader_name', '')}" />
+                % endif
+            </dd>
+            <dt><label for="leader_mail">代表者メールアドレス: </label></dt>
+            <dd>
+                % if errors.has_key('leader_mail'):
+                    <input type="text" id="leader_mail" name="leader_mail" size="30" value="${b_data.get('leader_mail', '')}" class="err_b" />
+                    <span class="err">${errors.get('leader_mail')}</span>
+                % else:
+                    <input type="text" id="leader_mail" name="leader_mail" size="30" value="${b_data.get('leader_mail', '')}" />
+                % endif
+            </dd>
+            <dt><label for="passwd">パスワード: </label></dt>
+            <dd>
+                % if errors.has_key('passwd'):
+                    <input type="password" id="passwd" name="passwd" size="13" value="" class="err_b" /> 
+                    <span class="err">${errors.get('passwd')}</span><br />
+                % else:
+                    <input type="password" id="passwd" name="passwd" size="13" value="" /> 
+                % endif
+                    <span class="warn">※バンド情報を変更する時、ライブエントリー時必要になります</span>
+            </dd>
+            <dt><label for="member_num">メンバー数: </label></dt>
+            <dd>
+                    <select id="member_num" name="member_num">
+                    % for num in range(1,21):
+                        % if str(num) == b_data.get('member_num', 0):
+                        <option value="${num}" selected="selected">${num}</option>
+                        % else:
+                        <option value="${num}">${num}</option>
+                        % endif
+                    % endfor
+                    </select>
+            </dd>
+        </dl>
+        </td>
+        </tr>
+        <tr>
+            <td class="">
+                <input type="submit" value="次へ" />
+            </td>
+        </tr>
+        </table>
+        </form>
+        
+        <p>
+        <a href="${cfg.URL_TOP}">一覧へ戻る</a>
+        </p>
+<%include file="${cfg.TMPL_FOOTER}" />

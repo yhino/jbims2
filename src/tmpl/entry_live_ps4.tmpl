@@ -1,0 +1,67 @@
+<%include file="${cfg.TMPL_HEADER}" />
+        <p class="info">
+            Welcome to JBIMS ver.2
+        </p>
+        <p>
+        ライブエントリーが完了しました。<br />
+        以下の情報でライブエントリーを行いました。<br />
+        </p>
+            
+        <form id="band_info" name="band_info" action="" method="post">
+        <input type="hidden" name="ps" value="5" />
+        <table>
+            <tr>
+                <td class="label r"><label for="band_name">バンド名: </label></td>
+                <td>
+                    ${band.band_name}
+                </td>
+            </tr>
+            <tr>
+                <td class="label r"><label for="genre">ジャンル: </label></td>
+                <td>
+                    ${band.genre}
+                </td>
+            </tr>
+            <tr>
+                <td class="label r">メンバー: </td>
+                <td>
+                    <ol>
+                    % for part, member in zip(band.part.split(''), band.member.split('')):
+                        % if part == '--':
+                        <li>[${part}] ${member} (出演しません)</li>
+                        % else:
+                        <li>[${part}] ${member}</li>
+                        % endif
+                    % endfor
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td class="label r"><label for="comment">コメント: </label></td>
+                <td>${band.comment.replace('', '<br />')}</td>
+            </tr>
+            <%
+                m_names = band.music_name.split(cfg.DATA_DELIMITER)
+                m_times = band.music_time.split(cfg.DATA_DELIMITER)
+                m_genres = band.music_genre.split(cfg.DATA_DELIMITER)
+                m_comps = band.music_comp.split(cfg.DATA_DELIMITER)
+            %>
+            % for m_name, m_time, m_genre, m_comp in zip(m_names, m_times, m_genres, m_comps):
+            <tr>
+                <td class="label r" rowspan="3">${m_name}</td>
+                <td>${m_time}</td>
+            </tr>
+            <tr>
+                <td>${m_genre}</td>
+            </tr>
+            <tr>
+                <td>${m_comp}</td>
+            </tr>
+            % endfor
+        </table>
+        </form>
+        <p>
+        修正がある場合は、もう一度ライブエントリーを行って下さい。<br />
+        <a href="${cfg.URL_TOP}">一覧へ戻る</a>
+        </p>
+<%include file="${cfg.TMPL_FOOTER}" />
