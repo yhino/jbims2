@@ -1,1 +1,1 @@
-/home/yoshiyuki/Dev/jbims2/conf/config.py
+../../src/conf/config.py
