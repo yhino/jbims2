@@ -16,7 +16,7 @@ DIR_CONF    = DIR_SYS + 'conf/'
 
 #-- ファイルパス
 LOG_CONF    = DIR_CONF  + 'log.conf'
-DB_BAND     = DIR_DB    + 'jbims_db'
+DB_BAND     = DIR_DB    + 'jbims.db'
 LIVE_STATUS = DIR_DB    + '.on_live'
 
 #-- テンプレート名

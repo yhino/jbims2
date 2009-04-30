@@ -22,8 +22,8 @@ DIR_CONF    = DIR_SYS + 'conf/'
 
 #-- ファイルパス
 LOG_CONF        = DIR_CONF  + 'log_tools.conf'
-DB_ADMINS       = DIR_DB    + 'admins_db'
-DB_BAND         = DIR_DB    + 'jbims_db'
+DB_ADMINS       = DIR_DB    + 'admins.db'
+DB_BAND         = DIR_DB    + 'jbims.db'
 HTPASSWD        = DIR_DB    + '.htpasswd'
 LIVE_STATUS     = DIR_DB    + '.on_live'
 
