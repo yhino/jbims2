@@ -4,7 +4,7 @@ JTOOLS 設定ファイル
 """
 
 #-- URL設定
-URL_TOP             = '/jtools/'
+URL_TOP             = '/club/jtools/'
 URL_IMG             = URL_TOP + 'img/'
 URL_CSS             = URL_TOP + 'style.css'
 URL_ERR_500         = URL_TOP + 'err.html'
@@ -14,7 +14,7 @@ URL_CTRL            = URL_TOP + 'control/'
 URL_CTRL_ENTRY_LIVE = URL_CTRL + 'entry_live.cgi'
 
 #-- ディレクトリ
-DIR_SYS     = '/Users/yoshiyuki/dev/jbims2/'
+DIR_SYS     = '/Users/yhino/UHD/dev/jacla/src/'
 DIR_LIB     = DIR_SYS + 'lib/'
 DIR_DB      = DIR_SYS + 'db/'
 DIR_TMPL    = DIR_SYS + 'tmpl/tools/'

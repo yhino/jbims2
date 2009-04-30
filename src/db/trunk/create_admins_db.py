@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 
 def main():
+    basedir = '/Users/yhino/UHD/dev/jacla/src'
     import sys
     from datetime import datetime
     import traceback
-    sys.path.append('/Users/yoshiyuki/dev/jbims2/lib')
+    sys.path.append(basedir+'/lib')
     from buzhug import Base
 
     try:
-        db = Base('/Users/yoshiyuki/dev/jbims2/db/admins_db')
+        db = Base(basedir+'/db/admins.db')
         db.create(
             ('generation'   , str),
             ('dept'         , str),

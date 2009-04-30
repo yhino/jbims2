@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 
 def main():
+    basedir = '/Users/yhino/UHD/dev/jacla/src'
     import sys
     from datetime import datetime
     import traceback
-    sys.path.append('/Users/yoshiyuki/Dev/jbims2/lib')
+    sys.path.append(basedir+'/lib')
     from buzhug import Base
 
     try:
-        db = Base('/Users/yoshiyuki/Dev/jbims2/db/jbims_db')
+        db = Base(basedir+'/db/jbims.db')
         db.create(
             ('id'           , str),
             ('band_name'    , str),

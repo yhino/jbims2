@@ -4,11 +4,11 @@ JBIMS 設定ファイル
 """
 
 #-- URL設定
-URL_TOP     = '/jbims2/'
+URL_TOP     = '/club/jbims2/'
 URL_ERR_500 = URL_TOP + '/err.html'
 
 #-- ディレクトリ
-DIR_SYS     = '/Users/yoshiyuki/dev/jbims2/'
+DIR_SYS     = '/Users/yhino/UHD/dev/jacla/src/'
 DIR_LIB     = DIR_SYS + 'lib/'
 DIR_DB      = DIR_SYS + 'db/'
 DIR_TMPL    = DIR_SYS + 'tmpl/'
