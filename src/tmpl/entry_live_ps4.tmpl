@@ -1,8 +1,6 @@
 <%include file="${cfg.TMPL_HEADER}" />
-        <p class="info">
-            Welcome to JBIMS ver.2
-        </p>
-        <p>
+        <h1>JBIMS ver.2 / ライブエントリー</h1>
+        <p class="dil_9">
         ライブエントリーが完了しました。<br />
         以下の情報でライブエントリーを行いました。<br />
         </p>
@@ -11,20 +9,18 @@
         <input type="hidden" name="ps" value="5" />
         <table>
             <tr>
-                <td class="label r"><label for="band_name">バンド名: </label></td>
-                <td>
+            <td>
+            <dl>
+                <dt><label for="band_name">バンド名</label></dt>
+                <dd>
                     ${band.band_name}
-                </td>
-            </tr>
-            <tr>
-                <td class="label r"><label for="genre">ジャンル: </label></td>
-                <td>
+                </dd>
+                <dt><label for="genre">ジャンル</label></dt>
+                <dd>
                     ${band.genre}
-                </td>
-            </tr>
-            <tr>
-                <td class="label r">メンバー: </td>
-                <td>
+                </dd>
+                <dt>メンバー</dt>
+                <dd>
                     <ol>
                     % for part, member in zip(band.part.split(''), band.member.split('')):
                         % if part == '--':
@@ -34,12 +30,9 @@
                         % endif
                     % endfor
                     </ol>
-                </td>
-            </tr>
-            <tr>
-                <td class="label r"><label for="comment">コメント: </label></td>
-                <td>${band.comment.replace('', '<br />')}</td>
-            </tr>
+                </dd>
+                <dt><label for="comment">コメント</label></dt>
+                <dd>${band.comment.replace('', '<br />')}</dd>
             <%
                 m_names = band.music_name.split(cfg.DATA_DELIMITER)
                 m_times = band.music_time.split(cfg.DATA_DELIMITER)
@@ -47,17 +40,14 @@
                 m_comps = band.music_comp.split(cfg.DATA_DELIMITER)
             %>
             % for m_name, m_time, m_genre, m_comp in zip(m_names, m_times, m_genres, m_comps):
-            <tr>
-                <td class="label r" rowspan="3">${m_name}</td>
-                <td>${m_time}</td>
-            </tr>
-            <tr>
-                <td>${m_genre}</td>
-            </tr>
-            <tr>
-                <td>${m_comp}</td>
-            </tr>
+                <dt>${m_name}</dt>
+                <dd>${m_time}</dd>
+                <dd>${m_genre}</dd>
+                <dd>${m_comp}</dd>
             % endfor
+            </dl>
+            </td>
+            </tr>
         </table>
         </form>
         <p>

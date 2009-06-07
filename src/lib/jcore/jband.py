@@ -54,6 +54,17 @@ class Dao:
             music_time = data['music_time'],
             music_genre = data['music_genre'],
             music_comp = data['music_comp'],
+            upd_dt = datetime.now()
+        )
+        return True
+
+    def entry_live(self, id, ver, data):
+        old_data = self.get_band_by_id(id)
+
+        if old_data.__version__ != int(ver):
+            return False
+        self.db.update(
+            old_data,
             live_entry = True,
             upd_dt = datetime.now()
         )

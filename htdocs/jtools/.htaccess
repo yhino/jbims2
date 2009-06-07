@@ -1,4 +1,4 @@
 AuthType Basic
 AuthName "jacla administrators"
-AuthUserFile /Users/yoshiyuki/dev/jbims2/db/.htpasswd
+AuthUserFile /Users/yhino/UHD/dev/jacla/src/db/.htpasswd
 Require valid-user

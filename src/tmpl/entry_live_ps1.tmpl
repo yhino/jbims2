@@ -1,11 +1,9 @@
 <%include file="${cfg.TMPL_HEADER}" />
-        <p class="info">
-            Welcome to JBIMS ver.2 / ライブエントリー
-        </p>
-        <p>
+        <h1>JBIMS ver.2 / ライブエントリー</h1>
+        <p class="dil_9">
         バンド情報を入力して下さい。<br />
         入力した情報は最新のバンド情報として登録されます。<br />
-        <span class="warn_b">全て必須項目です</span>
+        <span class="warn">全て必須項目です</span>
         </p>
             
         <form id="band_info" name="band_info" action="" method="post">
@@ -15,30 +13,28 @@
 
         <table>
             <tr>
-                <td class="label r"><label for="band_name">バンド名: </label></td>
-                <td>
+            <td>
+            <dl>
+                <dt><label for="band_name">バンド名</label></dt>
+                <dd>
                 % if errors.has_key('band_name'):
                     <input type="text" id="band_name" name="band_name" size="30" value="${params.get('band_name', band.band_name)}" class="err_b" />
                     <span class="err">${errors.get('band_name')}</span>
                 % else:
                     <input type="text" id="band_name" name="band_name" size="30" value="${params.get('band_name', band.band_name)}" />
                 % endif
-                </td>
-            </tr>
-            <tr>
-                <td class="label r"><label for="genre">ジャンル: </label></td>
-                <td>
+                </dd>
+                <dt><label for="genre">ジャンル</label></dt>
+                <dd>
                 % if errors.has_key('genre'):
                     <input type="text" id="genre" name="genre" size="30" value="${params.get('genre', band.genre)}" class="err_b" />
                     <span class="err">${errors.get('genre')}</span>
                 % else:
                     <input type="text" id="genre" name="genre" size="30" value="${params.get('genre', band.genre)}" />
                 % endif
-                </td>
-            </tr>
-            <tr>
-                <td class="label r">メンバー: </td>
-                <td>
+                </dd>
+                <dt>メンバー</dt>
+                <dd>
                     <ol>
                     % for part, member, i in zip(params.get('part', band.part).split(cfg.DATA_DELIMITER), params.get('member', band.member).split(cfg.DATA_DELIMITER), range(band.member_num)):
                     <li>
@@ -60,14 +56,14 @@
                     % endfor
                     </ol>
                     <span class="warn">※ライブに出演しないメンバーは、パートを[--]に設定して下さい</span>
-                </td>
+                </dd>
+                <dt><label for="comment">コメント</label></dt>
+                <dd><textarea id="comment" name="comment" cols="50" rows="5">${params.get('comment', band.comment.replace(cfg.DATA_DELIMITER, '\n'))}</textarea></dd>
+            </dl>
+            </td>
             </tr>
             <tr>
-                <td class="label r"><label for="comment">コメント: </label></td>
-                <td><textarea id="comment" name="comment" cols="50" rows="5">${params.get('comment', band.comment.replace(cfg.DATA_DELIMITER, '\n'))}</textarea></td>
-            </tr>
-            <tr>
-                <td class="r" colspan="2"><input type="submit" value="次へ" /></td>
+                <td class=""><input type="submit" value="次へ" /></td>
             </tr>
         </table>
         </form>
