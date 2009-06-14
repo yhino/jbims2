@@ -65,6 +65,7 @@ class Dao:
             return False
         self.db.update(
             old_data,
+            stage_setting = data['stage_setting'],
             live_entry = True,
             upd_dt = datetime.now()
         )

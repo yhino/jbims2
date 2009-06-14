@@ -1,0 +1,19 @@
+<% 
+import string
+%>
+% if params['s_other'] != '':
+<%
+    item_list = string.split(params['s_other'], ',')
+    for item in item_list:
+        name, x, y = string.split(item, ':')
+%>
+<g transform="translate(${x},${y}) scale(0.6)">
+<rect x="0" y="0" width="150" height="50" stroke="black" stroke-width="3" fill="none"/>
+<text x="20" y="40" font-family="MS-PGothic" font-size="40">
+other
+</text>
+<text x="-50" y="85" font-2amily="MS-PGothic" font-size="32">
+${name}
+</text>
+</g>
+% endif

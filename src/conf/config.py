@@ -48,7 +48,7 @@ REQ_GET_KEY_PS3     = ('band_name', 'genre', 'leader_name', 'leader_mail', 'pass
 REQ_GET_KEY_ENTRY_LIVE_PS1 = ('band_name', 'genre', 'part', 'member', 'comment')
 REQ_GET_KEY_ENTRY_LIVE_PS2 = ('band_name', 'genre', 'part', 'member', 'comment')
 REQ_GET_KEY_ENTRY_LIVE_PS3 = ('band_name', 'genre', 'part', 'member', 'comment', 'music_name', 'music_time', 'music_genre', 'music_comp')
-REQ_GET_KEY_ENTRY_LIVE_PS4 = ('band_name', 'genre', 'part', 'member', 'comment', 'music_name', 'music_time', 'music_genre', 'music_comp')
+REQ_GET_KEY_ENTRY_LIVE_PS4 = ('s_microphone', 's_amplifer', 's_keyboard', 's_other', 's_supplement', 's_useDrum', 's_usePercussion', 's_usrLainy', 's_useJazzCorus', 's_useAmpeg')
 REQ_GET_KEY_EDIT_BAND_PS1  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 'member_num')
 REQ_GET_KEY_EDIT_BAND_PS2  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 'member_num')
 REQ_GET_KEY_EDIT_BAND_PS3  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 'member_num', 'member', 'music_name', 'comment')
@@ -69,3 +69,4 @@ REQUIRE_KEY_LOGIN = {
 
 #-- 各種設定
 DATA_DELIMITER = ''
+STAGE_DATA_DELIMITER = "\t"

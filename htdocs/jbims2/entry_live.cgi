@@ -112,18 +112,25 @@ def main():
             params['music_genre'] = cfg.DATA_DELIMITER.join(m_genre)
             params['music_comp'] = cfg.DATA_DELIMITER.join(m_comp)
 
+            # regist liveinfo.
+            reg_res = dao.regist_liveinfo(id, ver, params)
+            if reg_res == True:
+                log.info('regist liveinfo. rec_id[%s], rec_version[%s], band_name[%s]' % (id, ver, band.band_name))
+            else:
+                log.error('regist liveinfo failed. rec_id[%s], rec_version[%s], band_name[%s]' % (id, ver, band.band_name))
+                return ut.redirect(cfg.URL_ERR_500)
+
         elif ps == '4':
             tmpl_name_entry_live = cfg.TMPL_ENTRY_LIVE_PS4
             # get request.
             for key in cfg.REQ_GET_KEY_ENTRY_LIVE_PS4:
                 params[key] = ut.getParam(req, key)
-            reg_res = dao.regist_liveinfo(id, ver, params)
-            if reg_res == True:
-                band = dao.get_band_by_id(id)
-                log.info('entry live. rec_id[%s], rec_version[%s], band_name[%s]' % (id, ver, band.band_name))
-            else:
-                log.error('entry live failed. rec_id[%s], rec_version[%s], band_name[%s]' % (id, ver, band.band_name))
-                return ut.redirect(cfg.URL_ERR_500)
+            upd_params['stage_setting'] = cfg.STAGE_DATA_DELIMITER.join(params)
+
+            # TODO call entry_live()
+
+            # get new bandinfo.
+            band = dao.get_band_by_id(id)
 
         else:
             # redirect error page.
