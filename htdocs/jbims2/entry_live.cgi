@@ -17,6 +17,7 @@ def main():
     from mako import exceptions
     from jcore.util import Util
     from jcore.jband import Dao
+    from jcore.live import LiveManager
     from jcore.controller import Controller
     from jcore.logger import Logger
 
@@ -96,7 +97,7 @@ def main():
             for key in cfg.REQ_GET_KEY_ENTRY_LIVE_PS3:
                 params[key] = ut.getParam(req, key)
 
-            #todo うまくないから関数化
+            # TODO うまくないから関数化
             # list to scalar
             m_name = []
             m_time = []
@@ -120,14 +121,34 @@ def main():
                 log.error('regist liveinfo failed. rec_id[%s], rec_version[%s], band_name[%s]' % (id, ver, band.band_name))
                 return ut.redirect(cfg.URL_ERR_500)
 
+            # get new bandinfo.
+            band = dao.get_band_by_id(id)
+            ver = band.__version__
+
         elif ps == '4':
             tmpl_name_entry_live = cfg.TMPL_ENTRY_LIVE_PS4
             # get request.
+            upd_params = {}
             for key in cfg.REQ_GET_KEY_ENTRY_LIVE_PS4:
                 params[key] = ut.getParam(req, key)
-            upd_params['stage_setting'] = cfg.STAGE_DATA_DELIMITER.join(params)
 
-            # TODO call entry_live()
+            try:
+                live_manager = LiveManager()
+                live_manager.set_template_dir(cfg.DIR_SVG_TMPL)
+                svg_data = live_manager.create_svg(params)
+                svg_file = id+'.svg'
+                ut.writeFile(cfg.DIR_SVG+svg_file, svg_data)
+                params['stage_setting'] = svg_file
+            except:
+                log.error('create_svg failed.' + exceptions.text_error_template().render())
+                return ut.redirect(cfg.URL_ERR_500)
+
+            entry_res = dao.entry_live(id, ver, params)
+            if entry_res == True:
+                log.info('entry live. rec_id[%s], rec_version[%s]' % (id, ver))
+            else:
+                log.error('entry live failed. rec_id[%s], rec_version[%s]' % (id, ver))
+                return ut.redirect(cfg.URL_ERR_500)
 
             # get new bandinfo.
             band = dao.get_band_by_id(id)

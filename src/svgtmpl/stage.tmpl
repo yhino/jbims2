@@ -1,19 +1,11 @@
-<?xml version="1.0" standalone="yes" ?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
-  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/SVG/DTD/svg10.dtd">
 <svg width="733" height="350" xmlns="http://www.w3.org/2000/svg">
-
-<desc>text element</desc>
-
-<desc>Example text02 - 'Hello' in blue</desc>
 <g transform="translate(-50,-150) scale(0.9)">
-    
 <%include file="${TMPL_SETTING['MIC_TMPL']}" />
 <%include file="${TMPL_SETTING['AMP_TMPL']}" />
 <%include file="${TMPL_SETTING['KEY_TMPL']}" />
 <%include file="${TMPL_SETTING['OTHER_TMPL']}" />
-    
 % if params['s_useDrum'] == 'yes':
 <%include file="${TMPL_SETTING['DRUM_TMPL']}" />
 % endif
@@ -29,6 +21,5 @@
 % if params['s_useAmpeg'] == 'yes':
 <%include file="${TMPL_SETTING['AMPEG_TMPL']}" />
 % endif
-
 </g>
 </svg>

@@ -37,3 +37,8 @@ class Util:
             if p == '':
                 return False
         return True
+
+    def writeFile(self, file, data, mode='w'):
+        fp = open(file, mode)
+        fp.write(data)
+        fp.close()

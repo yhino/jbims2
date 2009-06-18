@@ -6,7 +6,6 @@ from mako import exceptions
 
 class LiveManager:
     
-    SVG_TMPL_DIR    = "svgtmpl/"
     STAGE_TMPL      = "stage.tmpl"
     TMPL_SETTING    = {
         'MIC_TMPL'      : "mic.tmpl",
@@ -20,7 +19,6 @@ class LiveManager:
         'AMPEG_TMPL'    : "ampeg.tmpl"
     }
 
-
     def __init__(self):
         pass
     
@@ -30,17 +28,17 @@ class LiveManager:
     @return string          SVG Filename.    
     """
     def create_svg(self, params):
-        try:
-            # load template.
-            tmpl_lookup = TemplateLookup(self.SVG_TMPL_DIR, 
-                output_encoding='utf-8', input_encoding='utf-8', default_filters=['decode.utf8'])
-            tmpl_stage  = tmpl_lookup.get_template(self.STAGE_TMPL)
-            tmpl_params = locals()
-            tmpl_params['TMPL_SETTING'] = self.TMPL_SETTING
-            del tmpl_params['self']
-            return tmpl_stage.render(**tmpl_params)
-        except:
-            return False
+        # load template.
+        tmpl_lookup = TemplateLookup(self.tmplate_dir, 
+            output_encoding='utf-8', input_encoding='utf-8', default_filters=['decode.utf8'])
+        tmpl_stage  = tmpl_lookup.get_template(self.STAGE_TMPL)
+        tmpl_params = locals()
+        tmpl_params['TMPL_SETTING'] = self.TMPL_SETTING
+        del tmpl_params['self']
+        return tmpl_stage.render(**tmpl_params)
+
+    def set_template_dir(self, path):
+        self.tmplate_dir = path
 
 if __name__ == '__main__':
     params = {}
