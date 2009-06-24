@@ -130,7 +130,7 @@ def main():
             # get request.
             upd_params = {}
             for key in cfg.REQ_GET_KEY_ENTRY_LIVE_PS4:
-                params[key] = ut.getParam(req, key)
+                params[key] = ut.conv_encoding(ut.getParam(req, key), 'sjis', 'utf-8')
 
             try:
                 live_manager = LiveManager()

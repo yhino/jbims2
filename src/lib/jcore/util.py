@@ -1,4 +1,5 @@
 import sha
+import kconv
 
 class Util:
 
@@ -42,3 +43,11 @@ class Util:
         fp = open(file, mode)
         fp.write(data)
         fp.close()
+    
+    def conv_encoding(self, str, from_encoding, to_encoding):
+        try:
+            encode_list = {"sjis":kconv.SJIS, "utf-8":kconv.UTF8}
+            conv = kconv.Kconv(encode_list[to_encoding], encode_list[from_encoding],kconv.HANKAKU)
+            return conv.convert(str)
+        except:
+            return false
