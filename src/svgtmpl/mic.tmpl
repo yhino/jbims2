@@ -2,11 +2,9 @@
 import string
 %>
 % if params['s_microphone'] != '':
-<%
-    item_list = string.split(params['s_microphone'], ',')
-    for item in item_list:
-        name, x, y = string.split(item, ':')
-%>
+<% item_list = string.split(params['s_microphone'], ',') %>
+% for item in item_list: 
+<% name, x, y = string.split(item, ':') %>
 <g transform="translate(${x},${y}) scale(0.6)">
 <line x1="20" y1="0" x2="0" y2="20" stroke="black" stroke-width="3"/>
 <line x1="20" y1="0" x2="40" y2="20" stroke="black" stroke-width="3"/>
@@ -16,4 +14,5 @@ import string
 ${name}
 </text>
 </g>
+% endfor
 % endif

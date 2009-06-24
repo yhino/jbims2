@@ -2,15 +2,14 @@
 import string
 %>
 % if params['s_amplifer'] != '':
-<%
-    item_list = string.split(params['s_amplifer'], ',')
-    for item in item_list:
-        name, x, y = string.split(item, ':')
-%>
+<% item_list = string.split(params['s_amplifer'], ',') %>
+% for item in item_list:
+<% name, x, y = string.split(item, ':') %>
 <g transform="translate(${x},${y}) scale(0.6)">
 <polygon fill="none" stroke="black" stroke-width="3" points="0,100 100,100 100,0 0,0 0,100 50,0 100,100" />
 <text x="0" y="135" font-family="MS-PGothic" font-size="40">
 ${name}
 </text>
 </g>
+% endfor
 % endif

@@ -2,11 +2,9 @@
 import string
 %>
 % if params['s_keyboard'] != '':
-<%
-    item_list = string.split(params['s_keyboard'], ',')
-    for item in item_list:
-        name, x, y = string.split(item, ':')
-%>
+<% item_list = string.split(params['s_keyboard'], ',') %>
+% for item in item_list:
+<% name, x, y = string.split(item, ':') %>
 <g transform="translate(${x},${y}) scale(0.6)">
 <rect x="0" y="0" width="200" height="50" stroke="black" stroke-width="3" fill="none"/>
 <text x="20" y="40" font-family="MS-PGothic" font-size="40">
@@ -16,4 +14,5 @@ keyboard
 ${name}
 </text>
 </g>
+% endfor
 % endif
