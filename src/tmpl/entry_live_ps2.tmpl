@@ -14,7 +14,7 @@
         % for key in cfg.REQ_GET_KEY_ENTRY_LIVE_PS2:
         <input type="hidden" name="${key}" value="${params.get(key)}" />
         % endfor
-        % for music, i in zip(band.music_name.split(cfg.DATA_DELIMITER), range(len(band.music_name.split(cfg.DATA_DELIMITER)))):
+        % for music, time, genre, comp, i in zip(band.music_name.split(cfg.DATA_DELIMITER), band.music_time.split(cfg.DATA_DELIMITER), band.music_genre.split(cfg.DATA_DELIMITER), band.music_comp.split(cfg.DATA_DELIMITER), range(len(band.music_name.split(cfg.DATA_DELIMITER)))):
         <table>
             <tr>
                 <th>演奏曲</th>
@@ -23,14 +23,14 @@
             </tr>
             <tr>
                 <td><input type="text" name="music_name${i}" size="25" value="${music}" /></td>
-                <td rowspan="3"><textarea name="music_genre${i}" cols="30" rows="4"></textarea></td>
-                <td rowspan="3"><textarea name="music_comp${i}" cols="40" rows="4"></textarea></td>
+                <td rowspan="3"><textarea name="music_genre${i}" cols="30" rows="4">${genre}</textarea></td>
+                <td rowspan="3"><textarea name="music_comp${i}" cols="40" rows="4">${comp}</textarea></td>
             </tr>
             <tr>
                 <th>演奏時間</th>
             </tr>
             <tr>
-                <td><input type="text" name="music_time${i}" size="25" value="" /></td>
+                <td><input type="text" name="music_time${i}" size="25" value="${time}" /></td>
             </tr>
         </table>
         % endfor
