@@ -72,6 +72,23 @@ class Dao:
         )
         return True
 
+    def reset_live_entry(self, id, ver):
+        old_data = self.get_band_by_id(id)
+
+        if old_data.__version__ != int(ver):
+            return False
+        self.db.update(
+            old_data,
+            music_time = None,
+            music_genre = None,
+            music_comp = None,
+            stage_setting = None,
+            stage_info = None,
+            live_entry = False,
+            upd_dt = datetime.now()
+        )
+        return True
+
     def edit_band(self, id, ver, data):
         old_data = self.get_band_by_id(id)
 

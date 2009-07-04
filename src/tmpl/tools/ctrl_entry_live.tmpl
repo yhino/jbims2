@@ -9,6 +9,13 @@
     </p>
     <p>
         % if ctrller.is_start() == True:
+        <dl>
+            <dt>現在のライブエントリーバンド数 -&gt; ${band_cnt}</dt>
+            <dt>エントリーバンド名</dt>
+            % for band in bands:
+            <dd>${band.band_name}</dd>
+            % endfor
+        </dl>
         <a href="?func=off">ライブエントリー 受付停止</a>
         % else:
         <a href="?func=on">ライブエントリー 受付開始</a>

@@ -56,6 +56,8 @@
                     <a href="login.cgi?id=${b_data.__id__}&_done=${urllib.quote('entry_live.cgi?id='+ str(b_data.__id__) +'&ver='+ str(b_data.__version__) +'&ps=1')}">ライブエントリー [出演する]</a>
                     &nbsp;/&nbsp;
                     <a href="view_entry.cgi?id=${b_data.__id__}">エントリー内容確認</a>
+                    &nbsp;/&nbsp;
+                    <a href="login.cgi?id=${b_data.__id__}&_done=${urllib.quote('cancel_entry.cgi?id='+ str(b_data.__id__) +'&ver='+ str(b_data.__version__) +'&ps=1')}">エントリー取り消し</a>
                     % else:
                     <a href="login.cgi?id=${b_data.__id__}&_done=${urllib.quote('entry_live.cgi?id='+ str(b_data.__id__) +'&ver='+ str(b_data.__version__) +'&ps=1')}">ライブエントリー [出演しない]</a>
                     % endif

@@ -1,0 +1,75 @@
+<%include file="${cfg.TMPL_HEADER}" />
+        <h1>JBIMS ver.2 / ライブエントリー取り消し</h1>
+        <p class="dil_9">
+        ライブエントリーを取り消してもよろしいですか？<br />
+        </p>
+        
+        <form id="band_info" name="band_info" action="" method="post">
+        <input type="hidden" name="ps" value="2" />
+        <input type="hidden" name="id" value="${id}" />
+        <input type="hidden" name="ver" value="${ver}" />
+        <table>
+            <tr>
+            <td>
+            <dl>
+                <dt><label for="band_name">バンド名</label></dt>
+                <dd>
+                    ${band.band_name}
+                </dd>
+                <dt><label for="genre">ジャンル</label></dt>
+                <dd>
+                    ${band.genre}
+                </dd>
+                <dt>メンバー</dt>
+                <dd>
+                    <ol>
+                    % for part, member in zip(band.part.split(''), band.member.split('')):
+                        % if part == '--':
+                        <li>[${part}] ${member} (出演しません)</li>
+                        % else:
+                        <li>[${part}] ${member}</li>
+                        % endif
+                    % endfor
+                    </ol>
+                </dd>
+                <dt><label for="comment">コメント</label></dt>
+                <dd>${band.comment.replace('', '<br />')}</dd>
+            <%
+                m_names = band.music_name.split(cfg.DATA_DELIMITER)
+                m_times = band.music_time.split(cfg.DATA_DELIMITER)
+                m_genres = band.music_genre.split(cfg.DATA_DELIMITER)
+                m_comps = band.music_comp.split(cfg.DATA_DELIMITER)
+            %>
+            % for m_name, m_time, m_genre, m_comp in zip(m_names, m_times, m_genres, m_comps):
+                <dt>${m_name}</dt>
+                <dd>演奏時間: ${m_time}</dd>
+                <dd>ジャンル: ${m_genre}</dd>
+                <dd>構成: ${m_comp}</dd>
+            % endfor
+                <dt>ステージ図</dt>
+                <dd>
+                <div lass="dil_9">
+                表示には<a href="http://www.adobe.co.jp/svg/viewer/install/" target="_blank">Adobe(R) SVG Viewer</a>が必要です
+                </div>
+                <embed src="${cfg.URL_SVG}${band.stage_setting}" name="SVGEmbed" width="700" height="338" type="image/svg+xml" pluginspage="http://www.adobe.co.jp/svg/viewer/install/">
+                </dd>
+                <dt>ステージ図補足</dt>
+                <dd>
+                ${band.stage_info}
+                </dd>
+            </dl>
+            </td>
+            </tr>
+            <tr>
+                <td class="">
+                    <input type="submit" name="cancel" value="キャンセル" />
+                    <input type="submit" name="delete" value="取り消し" />
+                </td>
+            </tr>
+        </table>
+        </form>
+        
+        <p>
+        <a href="${cfg.URL_TOP}">一覧へ戻る</a>
+        </p>
+<%include file="${cfg.TMPL_FOOTER}" />
