@@ -32,8 +32,14 @@ class Dao:
             member_num = int(data['member_num']),
             member = member_str,
             part = part_str,
-            music_name = music_name_str,
             comment = comment_str,
+            music_name = music_name_str,
+            music_time = '',
+            music_genre = '',
+            music_comp = '',
+            stage_setting = '',
+            stage_info = '',
+            live_entry = False,
             add_dt = datetime.now()
         )
         return id 
@@ -79,11 +85,11 @@ class Dao:
             return False
         self.db.update(
             old_data,
-            music_time = None,
-            music_genre = None,
-            music_comp = None,
-            stage_setting = None,
-            stage_info = None,
+            music_time = '',
+            music_genre = '',
+            music_comp = '',
+            stage_setting = '',
+            stage_info = '',
             live_entry = False,
             upd_dt = datetime.now()
         )
