@@ -49,6 +49,13 @@ def main():
             elif func == 'off':
                 if ctrller.is_start() == True:
                     #todo clear live data.
+                    for band in bands:
+                        reset_res = dao.reset_live_entry(band.__id__, band.__version__)
+                        if reset_res == True:
+                            log.info('success to reset live entry. user[%s], remote_addr[%s], band[%s]' % (user, os.environ.get('REMOTE_ADDR',''), band.__id__))
+                        else:
+                            log.error('failed to reset live entry. user[%s], remote_addr[%s], band[%s]' % (user, os.environ.get('REMOTE_ADDR',''), band.__id__))
+                            return ut.redirect(cfg.URL_ERR_500)
                     ctrller.stop()
                 log.info('success to stop live entry. user[%s], remote_addr[%s]' % (user, os.environ.get('REMOTE_ADDR','')))
                 return ut.redirect(cfg.URL_CTRL_ENTRY_LIVE)
