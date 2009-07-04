@@ -24,6 +24,8 @@ def main():
         ut  = Util()
         ctrller = Controller(cfg.LIVE_STATUS)
         req = cgi.FieldStorage()
+        dao = Dao(cfg.DB_BAND)
+        bands = dao.get_band_list()
 
         # init variables.
         user = ''
@@ -53,6 +55,12 @@ def main():
         except:
             log.error('failed to control live entry. func[%s], user[%s], remote_addr[%s]' % (func, user, os.environ.get('REMOTE_ADDR','')))
             return ut.redirect(cfg.URL_ERR_500)
+
+        # create display values.
+        band_cnt = 0
+        for band in bands:
+            if band.live_entry == True:
+                band_cnt += 1
 
         tmpl_name = cfg.TMPL_CTRL_ENTRY_LIVE
         # set template.
