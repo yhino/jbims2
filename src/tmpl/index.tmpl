@@ -5,14 +5,7 @@
         部の運営支援とバンド間の情報交換を目的としてつくられています。
         </p>
 
-        <h2>バンド登録</h2>
-        <div class="mar_10">
-            <form action="reg_band.cgi" method="post">
-            <input type="hidden" name="ps" value="1" />
-            <input type="submit" value="新規登録" />
-            </form>
-        </div>
-
+        <div id="left_col">
         <div id="jbims_band_list">
         <h2>登録バンド一覧</h2>
         % if cnt_band < 1:
@@ -20,7 +13,7 @@
         % else:
         % for b_data in bands:
         <table class="jbims_band">
-            <tr><th><span class="mark">» </span>${b_data.band_name}</th></tr>
+            <tr><th><span class="mark">» </span>${b_data.band_name}<a name="${b_data.__id__}"/></th></tr>
             <tr><td>
             <dl>
                 <dt>代表者</dt>
@@ -72,4 +65,26 @@
         % endfor
         % endif
         </div>
+        </div>
+
+        <div id="right_col">
+        <h2>バンド登録</h2>
+        <div class="mar_10">
+            <form action="reg_band.cgi" method="post">
+            <input type="hidden" name="ps" value="1" />
+            <input type="submit" value="新規登録" />
+            </form>
+        </div>
+        % if cnt_band > 0:
+        <h2>バンドインデックス</h2>
+        <div class="mar_10">
+        <dl>
+        % for b_data in bands:
+          <dt><a href="#${b_data.__id__}">${b_data.band_name}</a></dt>
+        % endfor
+        </dl>
+        </div>
+        % endif
+        </div>
+
 <%include file="${cfg.TMPL_FOOTER}" />
