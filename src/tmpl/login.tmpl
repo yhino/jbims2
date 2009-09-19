@@ -11,7 +11,7 @@
         </p>
         % endif
 
-        <form id="band_info" name="band_info" action="" method="post">
+        <form id="band_info" name="band_info" action="login.cgi" method="post">
         <input type="hidden" name="crumb" value="" />
         % for key in cfg.REQ_GET_KEY_LOGIN:
         <input type="hidden" name="${key}" value="${params.get(key)}" />

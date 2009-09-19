@@ -7,14 +7,22 @@
         <span class="warn">全て必須項目です</span>
         </p>
             
-        <form id="band_info" name="band_info" action="" method="post">
+        <form id="band_info" name="band_info" action="entry_live.cgi" method="post">
         <input type="hidden" name="ps" value="3" />
         <input type="hidden" name="id" value="${id}" />
         <input type="hidden" name="ver" value="${ver}" />
         % for key in cfg.REQ_GET_KEY_ENTRY_LIVE_PS2:
         <input type="hidden" name="${key}" value="${params.get(key)}" />
         % endfor
-        % for music, time, genre, comp, i in zip(band.music_name.split(cfg.DATA_DELIMITER), band.music_time.split(cfg.DATA_DELIMITER), band.music_genre.split(cfg.DATA_DELIMITER), band.music_comp.split(cfg.DATA_DELIMITER), range(len(band.music_name.split(cfg.DATA_DELIMITER)))):
+        <%
+        music = band.music_name.split(cfg.DATA_DELIMITER)
+        time  = band.music_time.split(cfg.DATA_DELIMITER)
+        genre = band.music_genre.split(cfg.DATA_DELIMITER)
+        comp  = band.music_comp.split(cfg.DATA_DELIMITER)
+        
+        n_music = len(music)
+        %>
+        % for i in range(n_music):
         <table>
             <tr>
                 <th>演奏曲</th>
@@ -22,15 +30,31 @@
                 <th>構成</th>
             </tr>
             <tr>
-                <td><input type="text" name="music_name${i}" size="25" value="${music}" /></td>
-                <td rowspan="3"><textarea name="music_genre${i}" cols="30" rows="4">${genre}</textarea></td>
-                <td rowspan="3"><textarea name="music_comp${i}" cols="40" rows="4">${comp}</textarea></td>
+                % if (len(music) > 0):
+                <td><input type="text" name="music_name${i}" size="25" value="${music.pop(0)}" /></td>
+                % else:
+                <td><input type="text" name="music_name${i}" size="25" value="" /></td>
+                % endif
+                % if (len(genre) > 0):
+                <td rowspan="3"><textarea name="music_genre${i}" cols="30" rows="4">${genre.pop(0)}</textarea></td>
+                % else:
+                <td rowspan="3"><textarea name="music_genre${i}" cols="30" rows="4"></textarea></td>
+                % endif
+                % if (len(comp) > 0):
+                <td rowspan="3"><textarea name="music_comp${i}" cols="40" rows="4">${comp.pop(0)}</textarea></td>
+                % else:
+                <td rowspan="3"><textarea name="music_comp${i}" cols="40" rows="4"></textarea></td>
+                % endif
             </tr>
             <tr>
                 <th>演奏時間</th>
             </tr>
             <tr>
-                <td><input type="text" name="music_time${i}" size="25" value="${time}" /></td>
+                % if (len(time) > 0):
+                <td><input type="text" name="music_time${i}" size="25" value="${time.pop(0)}" /></td>
+                % else:
+                <td><input type="text" name="music_time${i}" size="25" value="" /></td>
+                % endif
             </tr>
         </table>
         % endfor

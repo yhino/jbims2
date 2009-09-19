@@ -40,8 +40,8 @@
             % for m_name, m_time, m_genre, m_comp in zip(m_names, m_times, m_genres, m_comps):
                 <dt>${m_name}</dt>
                 <dd>演奏時間: ${m_time}</dd>
-                <dd>ジャンル: ${m_genre}</dd>
-                <dd>構成: ${m_comp}</dd>
+                <dd>ジャンル: ${m_genre.replace('\n', '<br />')}</dd>
+                <dd>構成: ${m_comp.replace('\n', '<br />')}</dd>
             % endfor
                 <dt>ステージ図</dt>
                 <dd>
@@ -52,7 +52,7 @@
                 </dd>
                 <dt>ステージ図補足</dt>
                 <dd>
-                ${band.stage_info}
+                ${band.stage_info.replace('\n', '<br />')}
                 </dd>
             </dl>
             </td>
