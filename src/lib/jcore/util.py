@@ -1,5 +1,7 @@
 import sha
 import kconv
+import string
+import random
 
 class Util:
 
@@ -51,3 +53,7 @@ class Util:
             return conv.convert(str)
         except:
             return false
+
+    def getRandStr(self, length=12):
+        alphabets = string.digits + string.letters
+        return ''.join(random.choice(alphabets) for i in xrange(length))

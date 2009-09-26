@@ -94,6 +94,9 @@ textarea {
 form {
     width: 650px;
 }
+form.listform {
+    width: auto;
+}
 form dt {
     border-bottom: 1px dotted #ff0084;
 }
@@ -184,4 +187,12 @@ table.jbims_band dd {
 
 .mark {
     color: #FF0084;
+}
+
+.waku_1so {
+    border: 1px solid #FF0084;
+}
+
+.pad_5 {
+    padding: 5px;
 }

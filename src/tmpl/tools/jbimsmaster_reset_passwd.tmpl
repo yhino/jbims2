@@ -1,0 +1,28 @@
+<%include file="${cfg.TMPL_HEADER}" />
+    <h1>jacla Web管理者ツール / バンド情報管理 / パスワードリセット</h1>
+
+    <p class="dil_9">
+        パスワードリセットを行いました<br/>
+    </p>
+    <p class="info_b">バンド代表者へ新しいパスワードを連絡してください</p>
+
+    <form id="band_info" action="#">
+    <table>
+      <tr><td>
+        <dl>
+          <dt>バンド名</dt>
+          <dd>${band.band_name}</dd>
+          <dt>代表者</dt>
+          <dd><a href="mailto:${band.leader_mail}">${band.leader_name}</a></dd>
+          <dt>新しいパスワード</dt>
+          <dd>${newPasswd}</dd>
+        </dl>
+      </td></tr>
+    </table>
+    </form>
+
+    <p>
+        <a href="${cfg.URL_JBIMSMASTER}">バンド情報管理へ戻る</a> | <a href="${cfg.URL_TOP}">Web管理者ツールトップ</a>
+    </p>
+
+<%include file="${cfg.TMPL_FOOTER}" />

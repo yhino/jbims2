@@ -115,6 +115,18 @@ class Dao:
             upd_dt = datetime.now()
         )
         return True
+    
+    def change_passwd(self, id, ver, newPasswd):
+        old_data = self.get_band_by_id(id)
+
+        if old_data.__version__ != int(ver):
+            return False
+        self.db.update(
+            old_data,
+            passwd = newPasswd,
+            upd_dt = datetime.now()
+        )
+        return True
 
     def delete_band(self, id):
         before_cnt = len(self.db)

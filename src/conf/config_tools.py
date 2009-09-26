@@ -12,6 +12,8 @@ URL_HANDOVER        = URL_TOP + 'handover/'
 URL_HANDOVER_DONE   = URL_HANDOVER + 'done.cgi'
 URL_CTRL            = URL_TOP + 'control/'
 URL_CTRL_ENTRY_LIVE = URL_CTRL + 'entry_live.cgi'
+URL_JBIMSMASTER     = URL_TOP + 'jbimsmaster/'
+URL_JBIMSMASTER_RESET_PASSWD = URL_TOP + 'jbimsmaster/reset_passwd.cgi'
 
 #-- ディレクトリ
 DIR_SYS     = '/Users/yhino/UHD/dev/jacla/src/'
@@ -35,6 +37,8 @@ TMPL_HANDOVER_PS1       = 'handover_ps1.tmpl'
 TMPL_HANDOVER_PS2       = 'handover_ps2.tmpl'
 TMPL_HANDOVER_DONE      = 'handover_done.tmpl'
 TMPL_CTRL_ENTRY_LIVE    = 'ctrl_entry_live.tmpl'
+TMPL_JBIMSMASTER_LIST   = 'jbimsmaster_list.tmpl'
+TMPL_JBIMSMASTER_RESET_PASSWD = 'jbimsmaster_reset_passwd.tmpl'
 
 #-- 各種設定
 DATA_DELIMITER = ''
@@ -44,7 +48,7 @@ CMD_HTPASSWD = '/usr/sbin/htpasswd -b'
 TOOL_LISTS = [
     {'url': URL_HANDOVER, 'name': 'Web管理者引継ぎ', 'desc': 'Web管理者の引継ぎ時に使用します'},
     {'url': URL_CTRL_ENTRY_LIVE, 'name': 'ライブエントリー管理', 'desc': 'JBIMSライブエントリー機能を管理します'},
-    {'url': URL_TOP+'#', 'name': 'バンド情報管理', 'desc': 'JBIMSバンド情報を管理します'},
+    {'url': URL_JBIMSMASTER, 'name': 'バンド情報管理', 'desc': 'JBIMSバンド情報を管理します'},
 ]
 
 #-- 取得リクエストキー
