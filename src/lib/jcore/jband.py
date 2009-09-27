@@ -10,7 +10,7 @@ class Dao:
         self.db.set_string_format(unicode, 'utf-8')
 
     def get_band_list(self):
-        result = self.db.select()
+        result = self.db.select().sort_by('+__id__')
         return result
 
     def get_band_by_id(self, id):
