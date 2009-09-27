@@ -2,49 +2,80 @@
     <h1>jacla Web管理者ツール / バンド情報管理</h1>
 
     <p class="dil_9">
-        各バンドのパスワードリセット、データバックアップ、データクリアが行えるツールです。
+        各バンドのパスワードリセット、バンドデータバックアップ、バンドデータ初期化が行えるツールです。
     </p>
 
-    % if band_cnt < 1:
-    現在登録されているバンドはありません。
-    % else:
-    <script>
-    <!--
-    function submitCheck(name) {
-        result = confirm(name+"のパスワードをリセットします。\nよろしいでしょうか？");
-        if (result == true) {
-          return true;
-        } else {
-          return false;
-        }
-    }
-    -->
-    </script>
     <table class="jbims_band">
-        <tr>
-            <th>バンドID</th>
-            <th>バンド名</th>
-            <th>代表者</th>
-            <th>パスワード(暗号化済)</th>
-            <th>パスワードリセット</th>
-        </tr>
-        % for band in bands:
-        <tr>
-            <td>${band.__id__}</td>
-            <td>${band.band_name}</td>
-            <td><a href="mailto:${band.leader_mail}">${band.leader_name}</a></td>
-            <td>${band.passwd}</td>
-            <td>
-            <form class="listform" action="${cfg.URL_JBIMSMASTER_RESET_PASSWD}" name="resetpasswd_${band.__id__}" onsubmit="return submitCheck('${band.band_name}')">
-            <input type="hidden" name="id" value="${band.__id__}" />
-            <input type="hidden" name="ver" value="${band.__version__}" />
-            <input type="submit" value="パスワードリセット">
-            </form>
-            </td>
-        </tr>
-        % endfor
+    <tr><td>
+    <dl>
+        <dt>バンドデータバックアップ</dt>
+        <dd>
+        <form action="${cfg.URL_JBIMSMASTER_BACKUP}">
+        <input type="submit" value="バンドデータバックアップ" />
+        </form>
+        </dd>
+        <dt>バンドデータ初期化</dt>
+        <dd>
+        <script>
+        <!--
+        function clearConfirm() {
+            result = confirm('バンドデータを初期化します。\nよろしいでしょうか？');
+            if (result == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        -->
+        </script>
+        <form action="#" onsubmit="return clearConfirm()">
+        <input type="submit" value="バンドデータ初期化" />
+        </form>
+        </dd>
+        <dt>パスワードリセット</dt>
+        <dd>
+        % if band_cnt < 1:
+        現在登録されているバンドはありません。
+        % else:
+        <script>
+        <!--
+        function resetConfirm(name) {
+            result = confirm(name+"のパスワードをリセットします。\nよろしいでしょうか？");
+            if (result == true) {
+              return true;
+            } else {
+              return false;
+            }
+        }
+        -->
+        </script>
+        <table class="jbims_band">
+            <tr>
+                <th>バンドID</th>
+                <th>バンド名</th>
+                <th>代表者</th>
+                <th>操作</th>
+            </tr>
+            % for band in bands:
+            <tr>
+                <td>${band.__id__}</td>
+                <td>${band.band_name}</td>
+                <td><a href="mailto:${band.leader_mail}">${band.leader_name}</a></td>
+                <td>
+                <form class="listform" action="${cfg.URL_JBIMSMASTER_RESET_PASSWD}" name="resetpasswd_${band.__id__}" onsubmit="return resetConfirm('${band.band_name}')">
+                <input type="hidden" name="id" value="${band.__id__}" />
+                <input type="hidden" name="ver" value="${band.__version__}" />
+                <input type="submit" value="パスワードリセット">
+                </form>
+                </td>
+            </tr>
+            % endfor
+        </table>
+        % endif
+        </dd>
+    </dl>
+    </td></tr>
     </table>
-    % endif
 
     <p>
         <a href="${cfg.URL_TOP}">Web管理者ツールトップ</a>

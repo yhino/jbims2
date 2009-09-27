@@ -1,0 +1,23 @@
+<%include file="${cfg.TMPL_HEADER}" />
+    <h1>jacla Web管理者ツール / バンド情報管理 / バックアップ</h1>
+
+    <p class="dil_9">
+        バックアップを行いました<br/>
+    </p>
+
+    <form id="band_info" action="#">
+    <table>
+      <tr><td>
+        <dl>
+          <dt>バックアップファイル名</dt>
+          <dd>${backupfile}</dd>
+        </dl>
+      </td></tr>
+    </table>
+    </form>
+
+    <p>
+        <a href="${cfg.URL_JBIMSMASTER}">バンド情報管理へ戻る</a> | <a href="${cfg.URL_TOP}">Web管理者ツールトップ</a>
+    </p>
+
+<%include file="${cfg.TMPL_FOOTER}" />

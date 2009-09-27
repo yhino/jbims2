@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from buzhug import Base
 
@@ -135,6 +136,22 @@ class Dao:
         if before_cnt > after_cnt:
             return True
         return False
+
+    """
+    backup jbims band data.
+    @return processResult, execCommand, backupFile
+    """
+    def backup(self, cfg):
+        now = datetime.now()
+        backupfile = '%s-%s.tgz' % (cfg.DB_BAND, now.strftime('%Y%m%d'))
+        cmd = '%s %s -C%s %s' % (cfg.CMD_TARGZ, backupfile, cfg.DIR_DB, cfg.DB_BAND.replace(cfg.DIR_DB,''))
+        res = os.system(cmd)
+        if res != 0:
+            return False, cmd, backupfile
+        return True, cmd, backupfile
+
+    def clear(self):
+        pass
 
     def close(self):
         self.db.close()
