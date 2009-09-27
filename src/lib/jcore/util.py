@@ -56,4 +56,7 @@ class Util:
 
     def getRandStr(self, length=12):
         alphabets = string.digits + string.letters
-        return ''.join(random.choice(alphabets) for i in xrange(length))
+        randStr = ''
+        for i in xrange(length):
+            randStr += random.choice(alphabets)
+        return randStr
