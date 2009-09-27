@@ -144,7 +144,7 @@ class Dao:
     def backup(self, cfg):
         now = datetime.now()
         backupfile = '%s-%s.tgz' % (cfg.DB_BAND, now.strftime('%Y%m%d'))
-        cmd = '%s %s -C%s %s' % (cfg.CMD_TARGZ, backupfile, cfg.DIR_DB, cfg.DB_BAND.replace(cfg.DIR_DB,''))
+        cmd = '%s %s -C %s %s' % (cfg.CMD_TARGZ, backupfile, cfg.DIR_DB, cfg.DB_BAND.replace(cfg.DIR_DB,''))
         res = os.system(cmd)
         if res != 0:
             return False, cmd, backupfile
