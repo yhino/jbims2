@@ -35,10 +35,10 @@
             <td><a href="mailto:${band.leader_mail}">${band.leader_name}</a></td>
             <td>${band.passwd}</td>
             <td>
-            <form class="listform" action="${cfg.URL_JBIMSMASTER_RESET_PASSWD}" name="resetpasswd_${band.__id__}">
+            <form class="listform" action="${cfg.URL_JBIMSMASTER_RESET_PASSWD}" name="resetpasswd_${band.__id__}" onsubmit="return submitCheck('${band.band_name}')">
             <input type="hidden" name="id" value="${band.__id__}" />
             <input type="hidden" name="ver" value="${band.__version__}" />
-            <input type="submit" onsubmit="return submitCheck('${band.band_name}')" value="パスワードリセット">
+            <input type="submit" value="パスワードリセット">
             </form>
             </td>
         </tr>
