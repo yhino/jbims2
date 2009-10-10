@@ -48,16 +48,16 @@ LST_BAND_PART   = ('--', 'Gt', 'Ba', 'Key', 'Piano', 'Dr', 'Perc', 'Cl', 'Fl', '
 
 #-- 取得リクエストキー
 REQ_GET_KEY_LOGIN   = ('id', '_done')
-REQ_GET_KEY_PS1     = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 'member_num')
-REQ_GET_KEY_PS2     = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 'member_num')
-REQ_GET_KEY_PS3     = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 'member_num', 'member', 'music_name', 'comment')
+REQ_GET_KEY_PS1     = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 're_passwd', 'member_num')
+REQ_GET_KEY_PS2     = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 're_passwd', 'member_num')
+REQ_GET_KEY_PS3     = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 're_passwd', 'member_num', 'member', 'music_name', 'comment')
 REQ_GET_KEY_ENTRY_LIVE_PS1 = ('band_name', 'genre', 'part', 'member', 'comment')
 REQ_GET_KEY_ENTRY_LIVE_PS2 = ('band_name', 'genre', 'part', 'member', 'comment')
 REQ_GET_KEY_ENTRY_LIVE_PS3 = ('band_name', 'genre', 'part', 'member', 'comment', 'music_name', 'music_time', 'music_genre', 'music_comp')
 REQ_GET_KEY_ENTRY_LIVE_PS4 = ('s_microphone', 's_amplifer', 's_keyboard', 's_other', 's_supplement', 's_useDrum', 's_usePercussion', 's_useLainy', 's_useJazzCorus', 's_useAmpeg')
-REQ_GET_KEY_EDIT_BAND_PS1  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 'member_num')
-REQ_GET_KEY_EDIT_BAND_PS2  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 'member_num')
-REQ_GET_KEY_EDIT_BAND_PS3  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 'member_num', 'member', 'music_name', 'comment')
+REQ_GET_KEY_EDIT_BAND_PS1  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'chg_passwd', 'passwd', 're_passwd', 'member_num')
+REQ_GET_KEY_EDIT_BAND_PS2  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'chg_passwd', 'passwd', 're_passwd', 'member_num')
+REQ_GET_KEY_EDIT_BAND_PS3  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'chg_passwd', 'passwd', 're_passwd', 'member_num', 'member', 'music_name', 'comment')
 
 #-- エラーメッセージ
 REQUIRE_KEY_REG = {
@@ -66,6 +66,7 @@ REQUIRE_KEY_REG = {
     'leader_name'   : '代表者を入力して下さい',
     'leader_mail'   : '代表者メールアドレスを入力して下さい',
     'passwd'        : 'パスワードを入力して下さい',
+    're_passwd'     : 'パスワードを再入力して下さい',
     'member'        : 'メンバー%sを入力して下さい'
 }
 REQUIRE_KEY_LOGIN = {

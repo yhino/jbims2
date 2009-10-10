@@ -6,6 +6,22 @@
         <span class="warn">全て必須項目です</span>
         </p>
             
+        <script>
+        <!--
+        var passwd_onoff_func = function() {
+            if ($('form#band_info input#chg_passwd').attr('checked') == true) {
+                $('form#band_info input#passwd').removeAttr('disabled');
+                $('form#band_info input#re_passwd').removeAttr('disabled');
+            } else {
+                $('form#band_info input#passwd').attr('disabled', 'true');
+                $('form#band_info input#re_passwd').attr('disabled', 'true');
+            }
+        };
+        $('document').ready(function() {
+            passwd_onoff_func();
+        });
+        -->
+        </script>
         <form id="band_info" name="band_info" action="edit_band.cgi" method="post">
         <input type="hidden" name="ps" value="2" />
         <input type="hidden" name="id" value="${id}" />
@@ -51,6 +67,11 @@
                 % endif
                 </dd>
                 <dt><label for="passwd">パスワード</label></dt>
+                % if params.get('chg_passwd', '') == '':
+                <dd><input type="checkbox" id="chg_passwd" name="chg_passwd" value="" onclick="passwd_onoff_func()" checked> <label for="chg_passwd">パスワード変更</label></dd>
+                % else:
+                <dd><input type="checkbox" id="chg_passwd" name="chg_passwd" value="" onclick="passwd_onoff_func()"> <label for="chg_passwd">パスワード変更</label></dd>
+                % endif
                 <dd>
                 % if errors.has_key('passwd'):
                     <input type="password" id="passwd" name="passwd" size="13" value="" class="err_b" /> 
@@ -59,6 +80,15 @@
                     <input type="password" id="passwd" name="passwd" size="13" value="" /> 
                 % endif
                     <span class="warn">※バンド情報を変更する時、ライブエントリー時必要になります</span>
+                </dd>
+                <dt><label for="passwd">パスワード(再入力): </label></dt>
+                <dd>
+                    % if errors.has_key('re_passwd'):
+                        <input type="password" id="re_passwd" name="re_passwd" size="13" value="" class="err_b" /> 
+                        <span class="err">${errors.get('re_passwd')}</span><br />
+                    % else:
+                        <input type="password" id="re_passwd" name="re_passwd" size="13" value="" /> 
+                    % endif
                 </dd>
                 <dt><label for="member_num">メンバー数</label></dt>
                 <dd>

@@ -50,6 +50,10 @@ def main():
             # check mailaddress.
             if not ut.chkMailAddr(b_data.get('leader_mail', '')):
                 errors['leader_mail'] = '代表者メールアドレスを正しく入力して下さい'
+            # check passwd
+            if b_data.get('passwd') != b_data.get('re_passwd'):
+                errors['passwd'] = 'パスワード(再入力)と一致しません'
+                errors['re_passwd'] = 'パスワードと一致しません'
             
             if len(errors) > 0:
                 tmpl_reg_name = cfg.TMPL_REG_PS1

@@ -57,6 +57,9 @@ def main():
             # get request.
             for key in cfg.REQ_GET_KEY_EDIT_BAND_PS2:
                 params[key] = ut.getParam(req, key)
+                if key == 'passwd' or key == 're_passwd':
+                    if params['chg_passwd'] != '':
+                        continue
                 # validate param.
                 if cfg.REQUIRE_KEY_REG.has_key(key) and params[key] == '':
                     errors[key] = cfg.REQUIRE_KEY_REG[key]
@@ -67,11 +70,21 @@ def main():
             if not ut.chkMailAddr(params.get('leader_mail', '')):
                 errors['leader_mail'] = '代表者メールアドレスを正しく入力して下さい'
 
+            # check passwd
+            if params['chg_passwd'] == '':
+                if params.get('passwd') != params.get('re_passwd'):
+                    errors['passwd'] = 'パスワード(再入力)と一致しません'
+                    errors['re_passwd'] = 'パスワードと一致しません'
+
             if len(errors) > 0:
                 tmpl_name_edit_band = cfg.TMPL_EDIT_BAND_PS1
             else:    
                 # crypt passwd.
-                params['passwd'] = ut.cryptPasswd(params.get('passwd'))
+                if params['chg_passwd'] == '':
+                    params['passwd'] = ut.cryptPasswd(params.get('passwd'))
+                else:
+                    params['passwd'] = band.passwd
+
         elif ps == '3':
             tmpl_name_edit_band = cfg.TMPL_EDIT_BAND_PS3
             # get request (without member).

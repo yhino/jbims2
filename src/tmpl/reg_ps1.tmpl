@@ -58,6 +58,15 @@
                 % endif
                     <span class="warn">※バンド情報を変更する時、ライブエントリー時必要になります</span>
             </dd>
+            <dt><label for="passwd">パスワード(再入力): </label></dt>
+            <dd>
+                % if errors.has_key('re_passwd'):
+                    <input type="password" id="re_passwd" name="re_passwd" size="13" value="" class="err_b" /> 
+                    <span class="err">${errors.get('re_passwd')}</span><br />
+                % else:
+                    <input type="password" id="re_passwd" name="re_passwd" size="13" value="" /> 
+                % endif
+            </dd>
             <dt><label for="member_num">メンバー数: </label></dt>
             <dd>
                     <select id="member_num" name="member_num">
