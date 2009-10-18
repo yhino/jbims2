@@ -39,8 +39,9 @@ def main():
             log.error('validate error. errors = [ver]')
             return ut.redirect(cfg.URL_ERR_500)
 
-        if req.has_key('cancel'):
-            return ut.redirect(cfg.URL_TOP)
+        # check goback.
+        if req.has_key('goback'):
+            ps = '1'
 
         dao = Dao(cfg.DB_BAND)
         band = dao.get_band_by_id(id)
