@@ -4,8 +4,8 @@ JBIMS 設定ファイル
 """
 
 #-- URL設定
-URL_TOP     = '/club/jbims2/'
-URL_SVG     = '/club/jbims2/svg/'
+URL_TOP     = '/~club/jbims2/'
+URL_SVG     = '/~club/jbims2/svg/'
 URL_ERR_500 = URL_TOP + '/err.html'
 
 #-- ディレクトリ

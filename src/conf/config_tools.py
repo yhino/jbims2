@@ -4,7 +4,7 @@ JTOOLS 設定ファイル
 """
 
 #-- URL設定
-URL_TOP             = '/club/jtools/'
+URL_TOP             = '/~club/jtools/'
 URL_IMG             = URL_TOP + 'img/'
 URL_CSS             = URL_TOP + 'style.css'
 URL_ERR_500         = URL_TOP + 'err.html'
