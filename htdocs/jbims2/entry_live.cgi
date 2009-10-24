@@ -101,17 +101,13 @@ def main():
             # list to scalar
             m_name = []
             m_time = []
-            m_genre = []
-            m_comp = []
-            for i in range(len(band.music_name.split(cfg.DATA_DELIMITER))):
+            for i in range(int(params.get('music_num'))):
                 m_name.append(ut.getParam(req, 'music_name'+ str(i)))
                 m_time.append(ut.getParam(req, 'music_time'+ str(i)))
-                m_genre.append(ut.getParam(req, 'music_genre'+ str(i)))
-                m_comp.append(ut.getParam(req, 'music_comp'+ str(i)))
             params['music_name'] = cfg.DATA_DELIMITER.join(m_name)
             params['music_time'] = cfg.DATA_DELIMITER.join(m_time)
-            params['music_genre'] = cfg.DATA_DELIMITER.join(m_genre)
-            params['music_comp'] = cfg.DATA_DELIMITER.join(m_comp)
+            params['music_genre'] = ''
+            params['music_comp'] = ''
 
             # regist liveinfo.
             reg_res = dao.regist_liveinfo(id, ver, params)

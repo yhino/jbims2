@@ -36,14 +36,10 @@
             <%
                 m_names = band.music_name.split(cfg.DATA_DELIMITER)
                 m_times = band.music_time.split(cfg.DATA_DELIMITER)
-                m_genres = band.music_genre.split(cfg.DATA_DELIMITER)
-                m_comps = band.music_comp.split(cfg.DATA_DELIMITER)
             %>
-            % for m_name, m_time, m_genre, m_comp in zip(m_names, m_times, m_genres, m_comps):
+            % for m_name, m_time in zip(m_names, m_times):
                 <dt>${m_name}</dt>
                 <dd>演奏時間: ${m_time}</dd>
-                <dd>ジャンル: ${m_genre.replace('\n', '<br />')}</dd>
-                <dd>構成: ${m_comp.replace('\n', '<br />')}</dd>
             % endfor
                 <dt>ステージ図</dt>
                 <dd>

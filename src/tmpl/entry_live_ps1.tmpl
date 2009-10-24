@@ -59,6 +59,22 @@
                 </dd>
                 <dt><label for="comment">コメント</label></dt>
                 <dd><textarea id="comment" name="comment" cols="50" rows="5">${params.get('comment', band.comment.replace(cfg.DATA_DELIMITER, '\n'))}</textarea></dd>
+                <dt><label for="music_num">曲数</label></dt>
+                <dd>
+                    <select name="music_num">
+                    <%
+                    music = band.music_name.split(cfg.DATA_DELIMITER)
+                    n_music = len(music)
+                    %>
+                    % for n in range(1,11):
+                        % if n == params.get('music_num', n_music):
+                        <option value="${n}" selected="selected">${n}</option>
+                        % else:
+                        <option value="${n}">${n}</option>
+                        % endif
+                    % endfor
+                    </select>
+                </dd>
             </dl>
             </td>
             </tr>
