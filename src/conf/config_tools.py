@@ -15,6 +15,7 @@ URL_CTRL_ENTRY_LIVE = URL_CTRL + 'entry_live.cgi'
 URL_JBIMSMASTER     = URL_TOP + 'jbimsmaster/'
 URL_JBIMSMASTER_RESET_PASSWD = URL_TOP + 'jbimsmaster/reset_passwd.cgi'
 URL_JBIMSMASTER_BACKUP = URL_TOP + 'jbimsmaster/backup.cgi'
+URL_JBIMSMASTER_CLEAR = URL_TOP + 'jbimsmaster/clear.cgi'
 
 #-- ディレクトリ
 DIR_SYS     = '/Users/yhino/UHD/dev/jacla/src/'
@@ -41,12 +42,14 @@ TMPL_CTRL_ENTRY_LIVE    = 'ctrl_entry_live.tmpl'
 TMPL_JBIMSMASTER_LIST   = 'jbimsmaster_list.tmpl'
 TMPL_JBIMSMASTER_RESET_PASSWD = 'jbimsmaster_reset_passwd.tmpl'
 TMPL_JBIMSMASTER_BACKUP = 'jbimsmaster_backup.tmpl'
+TMPL_JBIMSMASTER_CLEAR = 'jbimsmaster_clear.tmpl'
 
 #-- 各種設定
 DATA_DELIMITER = ''
 CMD_HTPASSWD = '/usr/sbin/htpasswd -b'
 CMD_TARGZ = '/usr/bin/tar cfz'
 CMD_UNTARGZ = '/usr/bin/tar xfz'
+CMD_RM = '/bin/rm -rf'
 
 #-- ツール設定
 TOOL_LISTS = [

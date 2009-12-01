@@ -150,8 +150,36 @@ class Dao:
             return False, cmd, backupfile
         return True, cmd, backupfile
 
-    def clear(self):
-        pass
+    def clear(self, cfg):
+        cmd = '%s %s' % (cfg.CMD_RM, cfg.DB_BAND)
+        res = os.system(cmd)
+        if res != 0:
+            return False, cmd
+        return True, cmd
+
+    def create(self, dbname):
+        self.db = Base(dbname)
+        self.db.create(
+            ('id'           , str),
+            ('band_name'    , str),
+            ('genre'        , str),
+            ('leader_name'  , str),
+            ('leader_mail'  , str),
+            ('passwd'       , str),
+            ('member_num'   , int),
+            ('member'       , str),
+            ('part'         , str),
+            ('music_name'   , str),
+            ('music_time'   , str),
+            ('music_genre'  , str),
+            ('music_comp'   , str),
+            ('comment'      , str),
+            ('live_entry'   , bool),
+            ('stage_setting', str),
+            ('stage_info'   , str),
+            ('add_dt'       , datetime),
+            ('upd_dt'       , datetime)
+            , mode="override")
 
     def close(self):
         self.db.close()
