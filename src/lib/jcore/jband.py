@@ -157,6 +157,13 @@ class Dao:
             return False, cmd
         return True, cmd
 
+    def restore(self, bkupfile, cfg):
+        cmd = '%s %s -C %s' % (cfg.CMD_UNTARGZ, bkupfile, cfg.DIR_DB)
+        res = os.system(cmd)
+        if res != 0:
+            return False, cmd
+        return True, cmd
+
     def create(self, dbname):
         self.db = Base(dbname)
         self.db.create(

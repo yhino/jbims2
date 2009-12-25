@@ -1,0 +1,55 @@
+<%include file="${cfg.TMPL_HEADER}" />
+    <h1>jacla Web管理者ツール / バックアップ一覧</h1>
+
+    <p class="dil_9">
+        バンドデータのバックアップ一覧です。
+    </p>
+
+    <table class="jbims_band">
+    <tr><td>
+    <dl>
+        <dt>バックアップ一覧</dt>
+        <dd>
+        % if file_cnt < 1:
+        現在バックアップはありません。
+        % else:
+        <script type="text/javascript">
+        <!--
+        function restoreConfirm(name) {
+            result = confirm(name+"を使ってバンドデータをリストアします。\nよろしいでしょうか？");
+            if (result == true) {
+              return true;
+            } else {
+              return false;
+            }
+        }
+        -->
+        </script>
+        <table class="jbims_band">
+            <tr>
+                <th>バックアップファイル</th>
+                <th>操作</th>
+            </tr>
+            % for file in files:
+            <tr>
+                <td>${file}</td>
+                <td>
+                <form class="listform" action="${cfg.URL_JBIMSMASTER_RESTORE}" name="${file}" onsubmit="return restoreConfirm('${file}')">
+                <input type="hidden" name="backupfile" value="${file}" />
+                <input type="submit" value="このファイルでリストア" />
+                </form>
+                </td>
+            </tr>
+            % endfor
+        </table>
+        % endif
+        </dd>
+    </dl>
+    </td></tr>
+    </table>
+
+    <p>
+        <a href="${cfg.URL_JBIMSMASTER}">バンド情報管理へ戻る</a> | <a href="${cfg.URL_TOP}">Web管理者ツールトップ</a>
+    </p>
+
+<%include file="${cfg.TMPL_FOOTER}" />

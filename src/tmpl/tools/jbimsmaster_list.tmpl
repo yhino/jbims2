@@ -2,7 +2,7 @@
     <h1>jacla Web管理者ツール / バンド情報管理</h1>
 
     <p class="dil_9">
-        各バンドのパスワードリセット、バンドデータバックアップ、バンドデータ初期化が行えるツールです。
+        各バンドのパスワードリセット、バンドデータバックアップ、バンドデータリストア、バンドデータ初期化が行えるツールです。
     </p>
 
     <table class="jbims_band">
@@ -13,6 +13,10 @@
         <form action="${cfg.URL_JBIMSMASTER_BACKUP}">
         <input type="submit" value="バンドデータバックアップ" />
         </form>
+        </dd>
+        <dt>バンドデータリストア</dt>
+        <dd>
+        <a href="${cfg.URL_JBIMSMASTER_BACKUPLIST}">バックアップ一覧</a>
         </dd>
         <dt>バンドデータ初期化</dt>
         <dd>
