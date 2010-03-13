@@ -83,8 +83,12 @@ def main():
                 # crypt passwd.
                 if params['chg_passwd'] == '':
                     params['passwd'] = ut.cryptPasswd(params.get('passwd'))
+                    del params['re_passwd']
+                    del params['chg_passwd']
                 else:
                     params['passwd'] = band.passwd
+                    del params['re_passwd']
+                    del params['chg_passwd']
 
         elif ps == '3':
             tmpl_name_edit_band = cfg.TMPL_EDIT_BAND_PS3
@@ -114,7 +118,7 @@ def main():
             params['comment'] = cfg.DATA_DELIMITER.join(params['comment'].split("\r\n"))
 
             if len(errors) > 0:
-                tmpl_reg_name = cfg.TMPL_REG_PS2
+                tmpl_name_edit_band = cfg.TMPL_EDIT_BAND_PS2
             else:
                 # edit band.
                 edit_res = dao.edit_band(id, ver, params)

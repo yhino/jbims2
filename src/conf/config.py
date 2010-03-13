@@ -57,7 +57,7 @@ REQ_GET_KEY_ENTRY_LIVE_PS3 = ('band_name', 'genre', 'part', 'member', 'comment',
 REQ_GET_KEY_ENTRY_LIVE_PS4 = ('s_microphone', 's_amplifer', 's_keyboard', 's_other', 's_supplement', 's_useDrum', 's_usePercussion', 's_useLainy', 's_useJazzCorus', 's_useAmpeg')
 REQ_GET_KEY_EDIT_BAND_PS1  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'chg_passwd', 'passwd', 're_passwd', 'member_num')
 REQ_GET_KEY_EDIT_BAND_PS2  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'chg_passwd', 'passwd', 're_passwd', 'member_num')
-REQ_GET_KEY_EDIT_BAND_PS3  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'chg_passwd', 'passwd', 're_passwd', 'member_num', 'member', 'music_name', 'comment')
+REQ_GET_KEY_EDIT_BAND_PS3  = ('band_name', 'genre', 'leader_name', 'leader_mail', 'passwd', 'member_num', 'member', 'music_name', 'comment')
 
 #-- エラーメッセージ
 REQUIRE_KEY_REG = {
