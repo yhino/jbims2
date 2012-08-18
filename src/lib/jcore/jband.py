@@ -61,6 +61,7 @@ class Dao:
             music_time = data['music_time'],
             music_genre = data['music_genre'],
             music_comp = data['music_comp'],
+            live_entry = True,
             upd_dt = datetime.now()
         )
         return True

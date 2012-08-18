@@ -91,7 +91,7 @@ def main():
                 tmpl_name_entry_live = cfg.TMPL_ENTRY_LIVE_PS1
 
         elif ps == '3':
-            tmpl_name_entry_live = cfg.TMPL_ENTRY_LIVE_PS3
+            tmpl_name_entry_live = cfg.TMPL_ENTRY_LIVE_PS4
 
             # get request.
             for key in cfg.REQ_GET_KEY_ENTRY_LIVE_PS3:
@@ -121,33 +121,33 @@ def main():
             band = dao.get_band_by_id(id)
             ver = band.__version__
 
-        elif ps == '4':
-            tmpl_name_entry_live = cfg.TMPL_ENTRY_LIVE_PS4
-            # get request.
-            upd_params = {}
-            for key in cfg.REQ_GET_KEY_ENTRY_LIVE_PS4:
-                params[key] = ut.conv_encoding(ut.getParam(req, key), 'sjis', 'utf-8')
+        #elif ps == '4':
+        #    tmpl_name_entry_live = cfg.TMPL_ENTRY_LIVE_PS4
+        #    # get request.
+        #    upd_params = {}
+        #    for key in cfg.REQ_GET_KEY_ENTRY_LIVE_PS4:
+        #        params[key] = ut.conv_encoding(ut.getParam(req, key), 'sjis', 'utf-8')
 
-            try:
-                live_manager = LiveManager()
-                live_manager.set_template_dir(cfg.DIR_SVG_TMPL)
-                svg_data = live_manager.create_svg(params)
-                svg_file = id+'.svg'
-                ut.writeFile(cfg.DIR_SVG+svg_file, svg_data)
-                params['stage_setting'] = svg_file
-            except:
-                log.error('create_svg failed.' + exceptions.text_error_template().render())
-                return ut.redirect(cfg.URL_ERR_500)
+        #    try:
+        #        live_manager = LiveManager()
+        #        live_manager.set_template_dir(cfg.DIR_SVG_TMPL)
+        #        svg_data = live_manager.create_svg(params)
+        #        svg_file = id+'.svg'
+        #        ut.writeFile(cfg.DIR_SVG+svg_file, svg_data)
+        #        params['stage_setting'] = svg_file
+        #    except:
+        #        log.error('create_svg failed.' + exceptions.text_error_template().render())
+        #        return ut.redirect(cfg.URL_ERR_500)
 
-            entry_res = dao.entry_live(id, ver, params)
-            if entry_res == True:
-                log.info('entry live. rec_id[%s], rec_version[%s]' % (id, ver))
-            else:
-                log.error('entry live failed. rec_id[%s], rec_version[%s]' % (id, ver))
-                return ut.redirect(cfg.URL_ERR_500)
+        #    entry_res = dao.entry_live(id, ver, params)
+        #    if entry_res == True:
+        #        log.info('entry live. rec_id[%s], rec_version[%s]' % (id, ver))
+        #    else:
+        #        log.error('entry live failed. rec_id[%s], rec_version[%s]' % (id, ver))
+        #        return ut.redirect(cfg.URL_ERR_500)
 
-            # get new bandinfo.
-            band = dao.get_band_by_id(id)
+        #    # get new bandinfo.
+        #    band = dao.get_band_by_id(id)
 
         else:
             # redirect error page.

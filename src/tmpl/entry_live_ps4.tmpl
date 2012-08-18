@@ -41,17 +41,6 @@
                 <dt>${m_name}</dt>
                 <dd>演奏時間: ${m_time}</dd>
             % endfor
-                <dt>ステージ図</dt>
-                <dd>
-                <div lass="dil_9">
-                表示には<a href="http://www.adobe.co.jp/svg/viewer/install/" target="_blank">Adobe(R) SVG Viewer</a>が必要です
-                </div>
-                <embed src="${cfg.URL_SVG}${band.stage_setting}" name="SVGEmbed" width="700" height="338" type="image/svg+xml" pluginspage="http://www.adobe.co.jp/svg/viewer/install/">
-                </dd>
-                <dt>ステージ図補足</dt>
-                <dd>
-                ${band.stage_info.replace('\n', '<br />')}
-                </dd>
             </dl>
             </td>
             </tr>
